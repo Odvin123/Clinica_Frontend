@@ -662,6 +662,12 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      const chipSeleccionado = document.querySelector('.time-slot-chip.is-selected');
+      if (chipSeleccionado && timeInput) {
+        timeInput.value = chipSeleccionado.getAttribute('data-time-slot');
+      }
+
       let isValid = true;
       let firstInvalid = null;
 
