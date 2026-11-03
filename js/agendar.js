@@ -754,7 +754,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             nombreNino: childInput.value.trim(),
-            fechaNacimiento: childAgeInput.value,
+            fechaNacimiento: (childAgeInput.value && childAgeInput.value.trim()) ? childAgeInput.value.trim() : '2023-01-01',
             nombreTutor: parentInput.value.trim(),
             telefono: phoneInput.value.trim(),
             parentesco: parentRelation ? parentRelation.value : 'Madre',
