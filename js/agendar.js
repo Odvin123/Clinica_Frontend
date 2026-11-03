@@ -196,17 +196,30 @@
         chip.addEventListener('click', () => {
           if (chip.disabled || chip.classList.contains('is-blocked') || chip.classList.contains('is-occupied')) return;
 
-          timeChips.forEach(c => c.classList.remove('is-selected'));
+          // 1. Quitar selección de otros botones
+          document.querySelectorAll('.time-slot-chip').forEach(c => c.classList.remove('is-selected'));
+
+          // 2. Marcar este botón como seleccionado
           chip.classList.add('is-selected');
 
+          // 3. Obtener la hora del botón y GUARDARLA en el input oculto
           const slot = chip.getAttribute('data-time-slot') || chip.textContent.trim();
           if (timeInput) {
+            if (timeInput.tagName === 'SELECT' && !timeInput.querySelector(`option[value="${slot}"]`)) {
+              const opt = document.createElement('option');
+              opt.value = slot;
+              opt.textContent = slot;
+              timeInput.appendChild(opt);
+            }
             timeInput.value = slot;
             clearFieldError(timeInput);
+            console.log("✅ Hora guardada en el input:", timeInput.value); // Para depurar
           }
-          if (ticketTime) {
-            ticketTime.textContent = slot;
-          }
+
+          // 4. Actualizar el ticket de la derecha
+          if (ticketTime) ticketTime.textContent = slot;
+
+          // 5. Actualizar el paso visual
           setActiveStep(3, false);
           updateTicket();
         });
@@ -665,7 +678,14 @@
 
       const chipSeleccionado = document.querySelector('.time-slot-chip.is-selected');
       if (chipSeleccionado && timeInput) {
-        timeInput.value = chipSeleccionado.getAttribute('data-time-slot');
+        const slotVal = chipSeleccionado.getAttribute('data-time-slot') || chipSeleccionado.textContent.trim();
+        if (timeInput.tagName === 'SELECT' && !timeInput.querySelector(`option[value="${slotVal}"]`)) {
+          const opt = document.createElement('option');
+          opt.value = slotVal;
+          opt.textContent = slotVal;
+          timeInput.appendChild(opt);
+        }
+        timeInput.value = slotVal;
       }
 
       let isValid = true;
