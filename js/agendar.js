@@ -686,7 +686,8 @@
 
       const selectedChip = document.querySelector('.time-slot-chip.is-selected');
       const horaSeleccionada = selectedChip ? (selectedChip.getAttribute('data-time-slot') || selectedChip.textContent.trim()) : (timeInput ? timeInput.value : '');
-      if (!horaSeleccionada) {
+      
+      if (!horaSeleccionada || horaSeleccionada.trim() === '') {
         isValid = false;
         setFieldError(timeInput, 'Debes seleccionar un horario disponible.');
         if (!firstInvalid) firstInvalid = document.getElementById('preferred-date') || timeInput;
@@ -726,12 +727,6 @@
         if (!firstInvalid) firstInvalid = phoneInput;
       } else {
         clearFieldError(phoneInput);
-      }
-
-      if (!timeInput || !timeInput.value || timeInput.value.trim() === '') {
-        isValid = false;
-        setFieldError(timeInput, 'Debes seleccionar un horario disponible de la lista.');
-        if (!firstInvalid) firstInvalid = timeInput;
       }
 
       if (!isValid) {
