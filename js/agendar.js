@@ -226,7 +226,7 @@
             <span class="closed-day-notice__badge">Cerrado</span>
             <div class="closed-day-notice__text">
               <strong>Domingos Cerrado</strong>
-              <p>La clínica no brinda consulta externa los domingos. Por favor selecciona una fecha de Lunes a Sábado (Lunes a Viernes 08:00 a 17:00 · Sábados 08:00 AM a 12:30 PM).</p>
+              <p>La clínica no brinda consulta externa los domingos. Por favor selecciona una fecha de Lunes a Sábado.</p>
             </div>
           </div>
         `;
@@ -749,20 +749,24 @@
       }
 
       try {
+        const datosParaEnviar = {
+          nombreNino: childInput.value.trim(),
+          fechaNacimiento: (childAgeInput.value && childAgeInput.value.trim()) ? childAgeInput.value.trim() : '2023-01-01',
+          nombreTutor: parentInput.value.trim(),
+          telefono: phoneInput.value.trim(),
+          parentesco: parentRelation ? parentRelation.value : 'Madre',
+          fecha: dateInput.value,
+          hora: timeInput.value,
+          motivo: reasonInput ? reasonInput.value.trim() : 'Consulta Pediátrica General',
+          folio: folioCode
+        };
+
+        console.log("🔍 DATOS A ENVIAR AL BACKEND:", datosParaEnviar);
+
         const respuesta = await fetch(`${API_URL}/public/reservar`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            nombreNino: childInput.value.trim(),
-            fechaNacimiento: (childAgeInput.value && childAgeInput.value.trim()) ? childAgeInput.value.trim() : '2023-01-01',
-            nombreTutor: parentInput.value.trim(),
-            telefono: phoneInput.value.trim(),
-            parentesco: parentRelation ? parentRelation.value : 'Madre',
-            fecha: dateInput.value,
-            hora: timeInput.value,
-            motivo: reasonInput ? reasonInput.value.trim() : 'Consulta Pediátrica General',
-            folio: folioCode
-          })
+          body: JSON.stringify(datosParaEnviar)
         });
 
         const datos = await respuesta.json();
