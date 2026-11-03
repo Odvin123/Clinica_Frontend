@@ -728,6 +728,12 @@
         clearFieldError(phoneInput);
       }
 
+      if (!timeInput || !timeInput.value || timeInput.value.trim() === '') {
+        isValid = false;
+        setFieldError(timeInput, 'Debes seleccionar un horario disponible de la lista.');
+        if (!firstInvalid) firstInvalid = timeInput;
+      }
+
       if (!isValid) {
         if (firstInvalid) {
           firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
