@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Módulo de Administración, Métricas y Auditoría MINSA · Clínica Pediátrica Dr. Elman Urbina." />
+  <meta name="theme-color" content="#0F172A" />
+  <title>Administración y Auditoría MINSA | Clínica Pediátrica Dr. Elman Urbina</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <script src="js/guardian.js"></script>
+</head>
+<body data-page="admin">
+  <header class="mobile-topbar" aria-label="Navegación móvil de administración">
+    <div class="mobile-topbar__brand">
+      <span>Administración · Dr. Elman Urbina</span>
+    </div>
+    <button type="button" class="btn btn--sm" id="mobile-menu-open">Menú</button>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar">
+      <div class="sidebar__header">
+        <a href="#" class="brand-mark">
+          <span class="brand-mark__text">
+            <span class="brand-mark__name">Dr. Elman Urbina</span>
+            <span class="brand-mark__sub">Gestión y Auditoría MINSA</span>
+          </span>
+        </a>
+        <button type="button" class="btn btn--sm sidebar__close-btn" id="mobile-menu-close">Cerrar</button>
+      </div>
+
+      <nav class="nav-group" aria-label="Sub-módulos de administración">
+        <div class="nav-group__label">Control de clínica</div>
+
+        <button type="button" class="nav-item" data-nav-view="view-adm-resumen" aria-current="page">
+          <span class="nav-item__left">
+            <span>Auditoría MINSA y KPIs</span>
+          </span>
+        </button>
+
+        <button type="button" class="nav-item" data-nav-view="view-adm-todos-usuarios">
+          <span class="nav-item__left">
+            <span>Gestión de Usuarios</span>
+          </span>
+          <span class="nav-badge num" id="adm-nav-count-all-users">0</span>
+        </button>
+
+        <button type="button" class="nav-item" data-nav-view="view-adm-config">
+          <span class="nav-item__left">
+            <span>Configuración de la Clínica</span>
+          </span>
+        </button>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="user-card">
+          <span class="avatar avatar--amber" id="adm-sidebar-avatar">AD</span>
+          <div class="user-card__info">
+            <div class="user-card__name" id="adm-sidebar-name">Administrador</div>
+            <div class="user-card__role">Dirección Administrativa</div>
+          </div>
+        </div>
+        <div class="sidebar__links">
+          <a href="login.html">Cerrar sesión</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="canvas">
+      <div class="title-row">
+        <div class="title-row__left">
+          <h1 id="adm-page-title">Métricas de rendimiento y bitácora de auditoría MINSA</h1>
+          <p class="title-row__sub">Control exclusivo de usuarios, generación de PINs de acceso, configuración clínica y trazabilidad inalterable.</p>
+        </div>
+        <div class="title-row__actions">
+          <button type="button" class="btn btn--primary" data-open-modal="modal-new-user">
+            + Contratar Personal
+          </button>
+        </div>
+      </div>
+
+      <section id="view-adm-resumen" class="subview">
+        <div class="kpis">
+          <div class="kpi">
+            <div class="kpi-label">Atenciones registradas</div>
+            <div class="kpi-value num" id="adm-kpi-atenciones">0 <small>consultas</small></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Recetas emitidas</div>
+            <div class="kpi-value num" id="adm-kpi-vacunas">0 <small>emitidas</small></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Pacientes en espera / sala</div>
+            <div class="kpi-value num" id="adm-kpi-espera">0 <small>en fila</small></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Personal clínico activo</div>
+            <div class="kpi-value num" id="adm-kpi-staff">0 <small>funcionarios</small></div>
+          </div>
+        </div>
+
+        <article class="panel panel--accent-blue">
+          <header class="panel__head">
+            <div class="panel__title-group">
+              <h2 class="panel__title">Bitácora inalterable de auditoría clínica (Últimos 10 registros MINSA)</h2>
+              <p class="panel__meta">Trazabilidad en tiempo real desde PostgreSQL de todas las operaciones médicas, recepciones y cambios de seguridad.</p>
+            </div>
+            <button type="button" class="btn btn--sm btn--secondary" id="btn-refresh-audit">Actualizar bitácora</button>
+          </header>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hora / Fecha</th>
+                  <th>Funcionario / Actor</th>
+                  <th>Rol Operativo</th>
+                  <th>Acción clínica o administrativa</th>
+                </tr>
+              </thead>
+              <tbody id="adm-audit-tbody">
+                <tr><td colspan="4" style="text-align:center;">Cargando bitácora...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section id="view-adm-todos-usuarios" class="subview is-hidden">
+        <article class="panel panel--accent-blue">
+          <header class="panel__head">
+            <div class="panel__title-group">
+              <h2 class="panel__title">Padrón Integral de Usuarios (Personal Clínico y Tutores Familiares)</h2>
+              <p class="panel__meta">Generación de PIN temporal de 4 dígitos, control de estado de activación y suspensión operativa.</p>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <input type="search" id="adm-user-search" class="input" placeholder="Buscar por nombre, DNI o correo..." style="width:240px; height:36px;" />
+              <select id="adm-user-role-filter" class="select" style="width:170px; height:36px;">
+                <option value="ALL">Todos los roles</option>
+                <option value="DOCTOR">Doctores</option>
+                <option value="RECEPCION">Recepción</option>
+                <option value="TUTOR">Tutores</option>
+              </select>
+              <button type="button" class="btn btn--primary" data-open-modal="modal-new-user">+ Contratar Personal</button>
+            </div>
+          </header>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Usuario / Correo</th>
+                  <th>Rol</th>
+                  <th>Teléfono</th>
+                  <th>DNI / Código MINSA</th>
+                  <th>PIN Asignado</th>
+                  <th>Estado</th>
+                  <th class="n">Acciones de Seguridad</th>
+                </tr>
+              </thead>
+              <tbody id="adm-all-users-tbody">
+                <tr><td colspan="7" style="text-align:center;">Cargando usuarios...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section id="view-adm-config" class="subview is-hidden">
+        <article class="panel panel--accent-green">
+          <header class="panel__head">
+            <div class="panel__title-group">
+              <h2 class="panel__title">Configuración Institucional de la Clínica</h2>
+              <p class="panel__meta">Parámetros oficiales almacenados en PostgreSQL: horarios de atención, dirección, contacto y normativa MINSA.</p>
+            </div>
+          </header>
+
+          <form id="form-adm-config" class="form-grid" novalidate>
+            <div class="field col-6">
+              <label for="cfg-nombre" class="field__label">Nombre oficial de la clínica</label>
+              <input type="text" id="cfg-nombre" class="input" required />
+            </div>
+            <div class="field col-6">
+              <label for="cfg-director" class="field__label">Director médico responsable</label>
+              <input type="text" id="cfg-director" class="input" required />
+            </div>
+            <div class="field col-4">
+              <label for="cfg-minsa" class="field__label">Código de habilitación MINSA</label>
+              <input type="text" id="cfg-minsa" class="input num" required />
+            </div>
+            <div class="field col-4">
+              <label for="cfg-telefono" class="field__label">Teléfono principal de recepción</label>
+              <input type="text" id="cfg-telefono" class="input num" required />
+            </div>
+            <div class="field col-4">
+              <label for="cfg-correo" class="field__label">Correo institucional de contacto</label>
+              <input type="email" id="cfg-correo" class="input" required />
+            </div>
+            <div class="field col-12">
+              <label for="cfg-direccion" class="field__label">Dirección física de la sede (Juigalpa, Chontales)</label>
+              <input type="text" id="cfg-direccion" class="input" required />
+            </div>
+            <div class="field col-5">
+              <label for="cfg-horario-semana" class="field__label">Horario de atención (Lunes a Viernes)</label>
+              <input type="text" id="cfg-horario-semana" class="input" placeholder="08:00 AM - 05:00 PM" required />
+            </div>
+            <div class="field col-5">
+              <label for="cfg-horario-sabado" class="field__label">Horario de atención (Sábados)</label>
+              <input type="text" id="cfg-horario-sabado" class="input" placeholder="08:00 AM - 12:00 PM" required />
+            </div>
+            <div class="field col-2">
+              <label for="cfg-duracion-bloque" class="field__label">Duración cita (min)</label>
+              <input type="number" id="cfg-duracion-bloque" class="input num" min="15" max="120" step="5" required />
+            </div>
+            <div class="field col-12" style="display:flex; align-items:center; justify-content:space-between; padding:14px 16px; background:var(--raised); border:1px solid var(--border); border-radius:var(--radius-control); margin-top:4px;">
+              <div>
+                <strong style="font-size:14px; color:var(--text);">Recordatorios automáticos de dosis por WhatsApp</strong>
+                <p style="font-size:13px; color:var(--muted);">Habilita el envío de alertas de medicación a los tutores cuando Recepción programa una receta.</p>
+              </div>
+              <input type="checkbox" id="cfg-whatsapp-activo" checked style="width:20px; height:20px; accent-color:var(--health-green); cursor:pointer;" />
+            </div>
+            <footer class="col-12" style="display:flex; justify-content:flex-end; gap:10px; margin-top:8px;">
+              <button type="submit" class="btn btn--green" id="btn-save-config">Guardar Configuración en Base de Datos</button>
+            </footer>
+          </form>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal-new-user" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-dialog">
+      <header class="modal-dialog__head">
+        <h2 class="modal-dialog__title">Alta de Personal Clínico (Doctor / Recepción)</h2>
+        <button type="button" class="btn btn--sm btn--ghost" data-close-modal="modal-new-user">Cerrar</button>
+      </header>
+      <form id="form-modal-user" class="form-grid" novalidate>
+        <div class="field col-7">
+          <label for="new-user-name" class="field__label">Nombre completo *</label>
+          <input type="text" id="new-user-name" class="input" placeholder="Ej. Dra. Valeria Somarriba" required />
+        </div>
+        <div class="field col-5">
+          <label for="new-user-role" class="field__label">Cargo en la clínica *</label>
+          <select id="new-user-role" class="select">
+            <option value="RECEPCION">Recepcionista Clínica</option>
+            <option value="DOCTOR">Médico Pediatra</option>
+          </select>
+        </div>
+        <div class="field col-6">
+          <label for="new-user-minsa" class="field__label">Código MINSA / Cédula *</label>
+          <input type="text" id="new-user-minsa" class="input num" placeholder="MINSA-24910" required />
+        </div>
+        <div class="field col-6">
+          <label for="new-user-email" class="field__label">Correo institucional *</label>
+          <input type="email" id="new-user-email" class="input" placeholder="correo@clinicaurbina.ni" required />
+        </div>
+        <footer class="modal-dialog__foot col-12">
+          <button type="button" class="btn btn--secondary" data-close-modal="modal-new-user">Cancelar</button>
+          <button type="submit" class="btn btn--primary">Guardar y Generar PIN</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-pin-generado" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-dialog" style="max-width:440px; text-align:center;">
+      <header class="modal-dialog__head" style="justify-content:center;">
+        <h2 class="modal-dialog__title"> PIN Temporal de Activación</h2>
+      </header>
+      <div style="display:grid; gap:12px; padding:8px 0;">
+        <p style="font-size:14px; color:var(--muted);">
+          Se ha asignado un nuevo PIN temporal de 4 dígitos para <strong id="pin-modal-user-name" style="color:var(--text);">Usuario</strong>:
+        </p>
+        <div class="num" id="pin-modal-code" style="font-size:36px; font-weight:800; letter-spacing:0.18em; color:#BE123C; background:#FFE4E6; border:2px dashed #FDA4AF; border-radius:10px; padding:16px;">
+          0000
+        </div>
+        <p style="font-size:13px; color:var(--muted);">
+          El estado del usuario pasó a <strong>Pendiente</strong> (`activo = false`). Al ingresar con este PIN en el Login, el sistema le obligará a crear una contraseña segura de mínimo 8 caracteres.
+        </p>
+      </div>
+      <footer class="modal-dialog__foot" style="justify-content:center;">
+        <button type="button" class="btn btn--primary" data-close-modal="modal-pin-generado">Entendido</button>
+      </footer>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  <script src="js/admin.js" defer></script>
+</body>
+</html>

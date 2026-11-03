@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Agenda tu cita médica pediátrica en línea en la Clínica Pediátrica Dr. Elman Urbina en Juigalpa, Chontales. Reserva fácil, rápida y segura en 3 pasos." />
+  <meta name="theme-color" content="#FAF7F2" />
+  <title>Agendar Cita Pediátrica | Clínica Pediátrica Dr. Elman Urbina</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/inicio.css" />
+  <link rel="stylesheet" href="css/agendar.css" />
+</head>
+<body class="agendar-page">
+
+  <a href="#appointment-form" class="skip-link">Saltar al formulario de cita</a>
+
+  <div class="topbar" role="region" aria-label="Información rápida de contacto">
+    <div class="container topbar__inner">
+      <p class="topbar__item">
+        <svg class="icon-inline" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s-7-5.686-7-11a7 7 0 1 1 14 0c0 5.314-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        <span>Juigalpa, Chontales · De la Catedral 2 c. al Este, ½ c. al Sur</span>
+      </p>
+      <div class="topbar__actions">
+        <a href="tel:+50558764830" class="topbar__link tabular-nums">
+          <svg class="icon-inline" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          +505 5876 4830
+        </a>
+        <span class="topbar__divider" aria-hidden="true">·</span>
+        <span class="topbar__status">
+          <span class="status-dot" aria-hidden="true"></span>
+          Sistema Oficial de Citas
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <header class="header agendar-header" id="header">
+    <div class="container agendar-header__inner">
+      <a href="" class="brand" aria-label="Clínica Pediátrica Dr. Elman Urbina - Volver al Inicio">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="12" fill="#0F6B78" />
+            <path d="M13 13v5a7 7 0 0 0 14 0v-5" stroke="#FAF7F2" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M20 25v4a4 4 0 0 0 8 0v-2" stroke="#F4B886" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="28" cy="25" r="2.5" fill="#F4B886"/>
+            <circle cx="13" cy="12" r="1.8" fill="#FAF7F2"/>
+            <circle cx="27" cy="12" r="1.8" fill="#FAF7F2"/>
+          </svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__title">Dr. Elman Urbina</span>
+          <span class="brand__subtitle">Clínica Pediátrica · Juigalpa</span>
+        </span>
+      </a>
+
+      <div class="agendar-header__actions">
+        <a href="index.html" class="btn btn--secondary btn--sm agendar-back-btn">
+          <svg class="btn__icon-left" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M15 10H5m0 0 4-4m-4 4 4 4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Volver al Inicio</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="agendar-main">
+    <div class="container">
+      <div class="booking__top-header">
+        <div>
+          <h1 id="booking-title" class="section-title">
+            Agenda tu cita pediátrica en línea
+          </h1>
+          <p class="booking__lead">
+            Selecciona el servicio médico, consulta las indicaciones previas para tu hijo(a), elige el horario disponible y genera tu comprobante de pre-cita para recepción.
+          </p>
+        </div>
+        <div class="booking__clinic-pill" aria-label="Sucursal seleccionada">
+          <svg class="icon-inline" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21s-7-5.686-7-11a7 7 0 1 1 14 0c0 5.314-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.9"/>
+          </svg>
+          <div>
+            <span class="booking__clinic-pill-label">Clínica seleccionada</span>
+            <strong class="booking__clinic-pill-name">Sede Juigalpa, Chontales · Dr. Elman Urbina</strong>
+          </div>
+        </div>
+      </div>
+
+      <ol class="booking-stepper" aria-label="Pasos para agendar tu cita">
+        <li class="booking-stepper__item is-active" data-step-indicator="1">
+          <span class="booking-stepper__num tabular-nums">1</span>
+          <div class="booking-stepper__text">
+            <strong>Servicio e indicaciones</strong>
+            <span>Especialidad y preparación</span>
+          </div>
+        </li>
+        <li class="booking-stepper__item" data-step-indicator="2">
+          <span class="booking-stepper__num tabular-nums">2</span>
+          <div class="booking-stepper__text">
+            <strong>Fecha y horario</strong>
+            <span>Disponibilidad en clínica</span>
+          </div>
+        </li>
+        <li class="booking-stepper__item" data-step-indicator="3">
+          <span class="booking-stepper__num tabular-nums">3</span>
+          <div class="booking-stepper__text">
+            <strong>Datos de paciente y tutor</strong>
+            <span>Registro y comprobante</span>
+          </div>
+        </li>
+      </ol>
+
+      <div class="booking__grid">
+
+        <div class="booking__form-card">
+          <form id="appointment-form" class="appointment-form" novalidate>
+
+            <fieldset class="booking-block is-step-active" id="step-1" data-step-block="1">
+              <legend class="booking-block__legend">
+                <span class="booking-block__badge tabular-nums">1</span>
+                <div>
+                  <span class="booking-block__title">Selecciona el servicio pediátrico</span>
+                  <span class="booking-block__sub">Elige la atención que requiere tu hijo(a) para consultar las indicaciones de preparación.</span>
+                </div>
+              </legend>
+
+              <div class="reason-pills" role="group" aria-label="Selección de servicio médico">
+                <button type="button" class="reason-pill is-selected" data-reason="Consulta Pediátrica General">
+                  <span class="reason-pill__title">Consulta Pediátrica General</span>
+                  <span class="reason-pill__meta">Valoración médica integral</span>
+                </button>
+                <button type="button" class="reason-pill" data-reason="Control de Crecimiento y Desarrollo">
+                  <span class="reason-pill__title">Control de Niño Sano</span>
+                  <span class="reason-pill__meta">Peso, talla y nutrición</span>
+                </button>
+                <button type="button" class="reason-pill" data-reason="Vacunación e Inmunización">
+                  <span class="reason-pill__title">Vacunación e Inmunización</span>
+                  <span class="reason-pill__meta">Esquema MINSA/PAI y refuerzos</span>
+                </button>
+                <button type="button" class="reason-pill" data-reason="Emergencia / Valoración Prioritaria">
+                  <span class="reason-pill__title">Valoración Prioritaria</span>
+                  <span class="reason-pill__meta">Fiebre aguda o urgencia</span>
+                </button>
+              </div>
+
+              <div class="prep-box" id="service-prep-box" aria-live="polite">
+                <div class="prep-box__header">
+                  <svg class="prep-box__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.9"/>
+                    <path d="M12 8v4m0 4h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  <div>
+                    <h4 class="prep-box__title" id="prep-service-title">Preparación para Consulta Pediátrica General</h4>
+                    <p class="prep-box__subtitle">Requisitos e indicaciones antes de acudir a la clínica</p>
+                  </div>
+                </div>
+                <ul class="prep-box__list" id="prep-service-list">
+                  <li>Acudir con el menor acompañado por su madre, padre o tutor legal con identificación.</li>
+                  <li>Presentar la Tarjeta de Vacunación MINSA o historial médico previo si dispone de él.</li>
+                  <li>Si el niño(a) ha recibido algún medicamento en las últimas 6 horas, anotar nombre y dosis.</li>
+                </ul>
+              </div>
+            </fieldset>
+
+            <fieldset class="booking-block" id="step-2" data-step-block="2">
+              <legend class="booking-block__legend">
+                <span class="booking-block__badge tabular-nums">2</span>
+                <div>
+                  <span class="booking-block__title">Elige fecha y horario disponible</span>
+                  <span class="booking-block__sub" id="booking-schedule-info">Lunes a Viernes: 8:00 AM – 5:00 PM · Sábados: 8:00 AM – 12:30 PM · Domingos Cerrado</span>
+                </div>
+              </legend>
+
+              <div class="date-selector-row">
+                <div class="form-group date-selector-row__input">
+                  <label for="preferred-date" class="form-label">Fecha de la cita <span aria-hidden="true">*</span></label>
+                  <input
+                    type="date"
+                    id="preferred-date"
+                    name="preferredDate"
+                    class="form-control tabular-nums"
+                    required
+                  />
+                  <span class="form-error" id="error-preferred-date" role="alert"></span>
+                </div>
+
+                <div class="date-quick-group" role="group" aria-label="Selección rápida de fecha">
+                  <span class="form-label">Acceso rápido</span>
+                  <div class="date-quick-buttons">
+                    <button type="button" class="date-quick-btn is-active" data-date-offset="0">Hoy</button>
+                    <button type="button" class="date-quick-btn" data-date-offset="1">Mañana</button>
+                    <button type="button" class="date-quick-btn" data-date-offset="2">En 2 días</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="time-slots-header">
+                  <label for="preferred-time" class="form-label">Selecciona un horario disponible <span aria-hidden="true">*</span></label>
+                  <span class="time-slots-legend" id="time-slots-day-badge">Toque un bloque para reservar</span>
+                </div>
+
+                <select id="preferred-time" name="preferredTime" class="form-control sr-only-select" required aria-label="Hora preferida">
+                  <option value="" selected>Seleccionar hora</option>
+                  <option value="08:00 AM">08:00 AM</option>
+                </select>
+
+                <div class="time-slots-groups" id="dynamic-time-slots-container" aria-live="polite">
+
+                </div>
+                <span class="form-error" id="error-preferred-time" role="alert"></span>
+              </div>
+            </fieldset>
+
+            <fieldset class="booking-block booking-block--last" id="step-3" data-step-block="3">
+              <legend class="booking-block__legend">
+                <span class="booking-block__badge tabular-nums">3</span>
+                <div>
+                  <span class="booking-block__title">Datos del paciente y adulto responsable</span>
+                  <span class="booking-block__sub">Por normativa pediátrica, todo menor debe registrarse junto con el adulto que lo acompañará.</span>
+                </div>
+              </legend>
+
+              <div class="booking-step3-grid">
+                <div class="form-group">
+                  <label for="child-name" class="form-label">Nombre completo del niño(a) / paciente <span aria-hidden="true">*</span></label>
+                  <input
+                    type="text"
+                    id="child-name"
+                    name="childName"
+                    class="form-control"
+                    placeholder="Ej. Mateo Alejandro López"
+                    pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+                    title="Solo se permiten letras y espacios"
+                    required
+                  />
+                  <span class="form-error" id="error-child-name" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="child-age" class="form-label">Fecha de Nacimiento del paciente <span aria-hidden="true">*</span></label>
+                  <input
+                    type="date"
+                    id="child-age"
+                    name="childBirthDate"
+                    class="form-control tabular-nums"
+                    required
+                  />
+                  <span class="form-error" id="error-child-age" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="parent-name" class="form-label">Nombre del padre, madre o tutor <span aria-hidden="true">*</span></label>
+                  <input
+                    type="text"
+                    id="parent-name"
+                    name="parentName"
+                    class="form-control"
+                    placeholder="Ej. María Fernanda López"
+                    pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+                    title="Solo se permiten letras y espacios"
+                    autocomplete="name"
+                    required
+                  />
+                  <span class="form-error" id="error-parent-name" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone" class="form-label">Teléfono celular (WhatsApp) <span aria-hidden="true">*</span></label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="form-control tabular-nums"
+                    placeholder="Ej. 88880000"
+                    pattern="[0-9]{8}"
+                    maxlength="8"
+                    title="Debe contener exactamente 8 dígitos numéricos"
+                    autocomplete="tel"
+                    required
+                  />
+                  <span class="form-error" id="error-phone" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="parent-relation" class="form-label">Parentesco con el menor</label>
+                  <select id="parent-relation" name="parentRelation" class="form-control">
+                    <option value="Madre">Madre</option>
+                    <option value="Padre">Padre</option>
+                    <option value="Abuelo(a)">Abuelo(a)</option>
+                    <option value="Tutor legal">Tutor legal</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="reason" class="form-label">Motivo de la consulta  <span aria-hidden="true">*</span></label>
+                  <textarea
+                    id="reason"
+                    name="reason"
+                    rows="2"
+                    class="form-control"
+                    placeholder="Elige un servicio en el Paso 1 para actualizar este campo..."
+                    readonly
+                    style="background-color: #F8FAFC; cursor: not-allowed; resize: none;"
+                    required
+                  >Consulta Pediátrica General</textarea>
+                  <span class="form-error" id="error-reason" role="alert"></span>
+                </div>
+              </div>
+
+              <p class="booking-legal">
+                Al confirmar tu cita, aceptas el
+                <a href="aviso-de-privacidad.html" target="_blank" rel="noopener noreferrer" class="booking-legal__link">Aviso de Privacidad</a>
+                y los
+                <a href="terminos-y-condiciones.html" target="_blank" rel="noopener noreferrer" class="booking-legal__link">Términos y Condiciones</a>
+                de la Clínica Pediátrica Dr. Elman Urbina.
+              </p>
+
+              <button type="submit" class="btn btn--primary btn--full" id="btn-submit-booking">
+                <span>Agendar Cita Pediátrica</span>
+              </button>
+
+              <p class="form-Status" id="form-feedback" role="status" aria-live="polite"></p>
+            </fieldset>
+          </form>
+        </div>
+
+        <aside class="booking-ticket" id="booking-ticket-card" aria-label="Resumen de tu cita médica">
+          <div class="booking-ticket__top">
+            <div>
+              <span class="booking-ticket__kicker" id="ticket-status-kicker">Comprobante de Pre-Cita</span>
+              <h2 class="booking-ticket__heading" style="font-size: 1.15rem; margin:0;">Resumen de Reservación</h2>
+            </div>
+            <span class="booking-ticket__folio tabular-nums" id="ticket-folio">FOLIO · URB-2840</span>
+          </div>
+
+          <div class="booking-ticket__body">
+            <div class="booking-ticket__row">
+              <span class="booking-ticket__label">Clínica / Sucursal</span>
+              <strong class="booking-ticket__value">Clínica Pediátrica Dr. Elman Urbina</strong>
+              <span class="booking-ticket__sub">Juigalpa, Chontales · De la Catedral 2 c. al Este, ½ c. al Sur</span>
+            </div>
+
+            <div class="booking-ticket__row">
+              <span class="booking-ticket__label">Servicio seleccionado</span>
+              <strong class="booking-ticket__value booking-ticket__value--accent" id="ticket-service">Consulta Pediátrica General</strong>
+              <span class="booking-ticket__sub" id="ticket-visit-type">Primera visita a la clínica</span>
+            </div>
+
+            <div class="booking-ticket__grid-two">
+              <div class="booking-ticket__row">
+                <span class="booking-ticket__label">Fecha programada</span>
+                <strong class="booking-ticket__value tabular-nums" id="ticket-date">Hoy</strong>
+              </div>
+              <div class="booking-ticket__row">
+                <span class="booking-ticket__label">Horario elegido</span>
+                <strong class="booking-ticket__value tabular-nums" id="ticket-time">Pendiente de seleccionar</strong>
+              </div>
+            </div>
+
+            <div class="booking-ticket__row">
+              <span class="booking-ticket__label">Paciente menor de edad</span>
+              <strong class="booking-ticket__value" id="ticket-child">Pendiente de ingresar</strong>
+              <span class="booking-ticket__sub" id="ticket-child-age">Edad: Por indicar</span>
+            </div>
+
+            <div class="booking-ticket__row">
+              <span class="booking-ticket__label">Adulto responsable (Tutor)</span>
+              <strong class="booking-ticket__value" id="ticket-parent">Pendiente de ingresar</strong>
+              <span class="booking-ticket__sub tabular-nums" id="ticket-phone">Tel: Por indicar</span>
+            </div>
+
+            <div class="booking-ticket__notice">
+              <strong>Modalidad de atención en clínica:</strong>
+              <p>El pago de la consulta o procedimiento se realiza directamente en la recepción de la clínica el día de tu cita. Preséntate 10 minutos antes de tu horario seleccionado.</p>
+            </div>
+
+            <div class="booking__preview" aria-live="polite">
+              <div class="booking__preview-header">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span>Detalle del pase de reservación</span>
+              </div>
+              <p class="booking__preview-body" id="booking-live-preview">
+                Complete los datos del paciente para generar el detalle de su cita médica.
+              </p>
+            </div>
+
+            <div id="ticket-pdf-actions" style="margin-top: 16px; display: none;" data-html2canvas-ignore="true">
+              <button type="button" class="btn btn--primary btn--full" id="btn-download-pdf" disabled style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background-color: #0F766E; border-color: #0F766E; color: #FFFFFF; font-weight: 600;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="7 10 12 15 17 10" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="12" y1="15" x2="12" y2="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Descargar Comprobante (PDF)</span>
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__bottom" style="border:none; padding-top:0;">
+        <p>© <span id="current-year" class="tabular-nums">2026</span> Clínica Pediátrica Dr. Elman Urbina. Todos los derechos reservados.</p>
+        <p><a href="index.html" style="color:#0F766E; text-decoration:underline;">Volver al Inicio</a> · Juigalpa, Chontales.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+  <script src="js/agendar.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B132B" />
+  <title>Iniciar sesión · Clínica Pediátrica Dr. Elman Urbina</title>
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body data-page="login">
+  <div class="auth-shell">
+
+    <aside class="auth-showcase" aria-label="Identidad institucional">
+      <header class="auth-showcase__top">
+        <a href="index.html" class="brand-mark">
+          <svg class="brand-mark__svg" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="10" fill="#0F766E" />
+            <path d="M13 13v5a7 7 0 0 0 14 0v-5" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" />
+            <path d="M20 25v4a4 4 0 0 0 8 0v-2" stroke="#5EEAD4" stroke-width="2.3" stroke-linecap="round" />
+            <circle cx="28" cy="25" r="2.4" fill="#5EEAD4" />
+          </svg>
+          <span class="brand-mark__text">
+            <span class="brand-mark__name">Dr. Elman Urbina</span>
+            <span class="brand-mark__sub">Clínica Pediátrica · Juigalpa</span>
+          </span>
+        </a>
+      </header>
+
+      <div class="auth-showcase__body">
+        <h2 class="auth-showcase__title">Atención pediátrica cálida y segura</h2>
+        <p class="auth-showcase__desc">Plataforma clínica integral para el seguimiento del crecimiento infantil, esquema de vacunación y comunicación directa con las familias.</p>
+        <div class="auth-illustration-card">
+          <figure class="auth-illustration-media">
+
+            <img src="assets/hero-peluche.jpg" alt="Oso de peluche con estetoscopio pediátrico" width="640" height="420" />
+          </figure>
+        </div>
+      </div>
+
+      <footer class="auth-showcase__footer num">
+        <span></span>
+        <span>Recepción: +505 5876 4830</span>
+      </footer>
+    </aside>
+
+    <main class="auth-main">
+      <section class="auth-card" aria-labelledby="login-card-title">
+        <header class="auth-card__head">
+          <h1 class="auth-card__title" id="login-card-title">Iniciar sesión</h1>
+          <p class="auth-card__sub">Ingresa tus credenciales registradas para acceder a la plataforma clínica.</p>
+        </header>
+
+        <form id="login-form" class="auth-form" novalidate>
+          <div class="auth-field">
+            <label class="auth-field__label" for="login-identifier">Correo electrónico o usuario</label>
+            <input type="text" id="login-identifier" name="identifier" class="input auth-input" placeholder="ej. nombre@clinicaurbina.ni o 8834-1920" autocomplete="username" required />
+          </div>
+
+          <div class="auth-field">
+            <div class="auth-field__label-row field__label-row">
+              <label class="auth-field__label" for="login-password">Contraseña o PIN</label>
+              <a href="
+              recuperar.html" id="forgot-password-link" class="auth-forgot-link">¿Olvidaste tu contraseña?</a>
+            </div>
+            <div class="input-password-wrap">
+              <input type="password" id="login-password" name="password" class="input auth-input" placeholder="Ingresa tu contraseña o PIN temporal" autocomplete="current-password" required />
+              <button type="button" class="password-eye-btn" id="btn-toggle-login-pwd" aria-label="Mostrar contraseña" aria-pressed="false">
+                <svg class="icon-eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-6.4 0-10-7-10-7a18.45 18.45 0 0 1 5.06-5.94" />
+                  <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c6.4 0 10 7 10 7a18.5 18.5 0 0 1-2.16 3.19" />
+                  <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
+                  <line x1="2" y1="2" x2="22" y2="22" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="auth-remember-row">
+            <label class="auth-remember-label" for="login-remember">
+              <input type="checkbox" id="login-remember" name="remember" />
+              <span>Recordar mi sesión</span>
+            </label>
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn--teal btn--full auth-submit-btn" id="btn-login-submit">
+              <span>Iniciar sesión</span>
+            </button>
+          </div>
+        </form>
+
+        <p class="auth-discrete-footer">
+          ¿Primera vez en la plataforma? Solicita tus credenciales de acceso en la recepción de la clínica.
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal-first-password" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-first-pwd-title">
+      <div class="modal-dialog__head">
+        <div>
+          <span class="pill pill--warn">Seguridad Obligatoria · Primer Acceso</span>
+          <h2 class="modal-dialog__title" id="modal-first-pwd-title" style="margin-top:6px;">Crear Nueva Contraseña</h2>
+        </div>
+      </div>
+      <p style="font-size:13px; color:#4B5563; margin-bottom:16px;">
+        Has ingresado con un <strong>PIN o código temporal</strong> asignado en la clínica. Por seguridad del expediente pediátrico, configura tu contraseña personal definitiva antes de continuar.
+      </p>
+      <form id="form-first-password" class="form-grid" novalidate>
+        <div class="field col-12">
+          <label class="field__label" for="new-password">Nueva Contraseña *</label>
+          <input type="password" id="new-password" class="input auth-input" placeholder="Mínimo 8 caracteres, letra, número y símbolo" autocomplete="new-password" required />
+        </div>
+        <div class="field col-12">
+          <label class="field__label" for="confirm-password">Confirmar Nueva Contraseña *</label>
+          <input type="password" id="confirm-password" class="input auth-input" placeholder="Repite exactamente tu nueva contraseña" autocomplete="new-password" required />
+        </div>
+        <div class="col-12">
+          <div class="strength-box">
+            <div class="strength-box__head">
+              <span>Nivel de seguridad de la clave</span>
+              <span id="pwd-strength-label" class="num" style="color:#BE123C;">Pendiente</span>
+            </div>
+            <div class="strength-meter" aria-hidden="true">
+              <div class="strength-meter__fill" id="pwd-strength-fill"></div>
+            </div>
+            <ul class="pwd-rules" aria-label="Requisitos de seguridad de la contraseña">
+              <li class="pwd-rule" id="rule-len"><span class="pwd-rule__icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m3.5 8.5 3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Mínimo 8 caracteres de longitud</span></li>
+              <li class="pwd-rule" id="rule-letter"><span class="pwd-rule__icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m3.5 8.5 3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Al menos una letra (mayúscula o minúscula)</span></li>
+              <li class="pwd-rule" id="rule-num"><span class="pwd-rule__icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m3.5 8.5 3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Al menos un número (0-9)</span></li>
+              <li class="pwd-rule" id="rule-special"><span class="pwd-rule__icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m3.5 8.5 3 3 6-6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Al menos un carácter especial (@, #, $, !, *, .)</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12 modal-dialog__foot">
+          <button type="submit" class="btn btn--green btn--full auth-submit-btn" id="btn-save-first-pwd">Actualizar Contraseña y Continuar al Módulo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  <script src="js/login.js" defer></script>
+</body>
+</html>

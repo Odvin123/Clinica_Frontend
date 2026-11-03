@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portal Familiar del Tutor · Clínica Pediátrica Dr. Elman Urbina." />
+  <meta name="theme-color" content="#0F172A" />
+  <title>Portal del Tutor | Clínica Pediátrica Dr. Elman Urbina</title>
+  <link rel="stylesheet" href="css/tutor.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/guardian.js"></script>
+</head>
+<body data-page="tutor">
+
+  <header class="mobile-topbar" aria-label="Navegación móvil del portal familiar">
+    <div class="mobile-topbar__brand">
+      <svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect width="40" height="40" rx="10" fill="#0369A1" />
+        <path d="M13 13v5a7 7 0 0 0 14 0v-5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M20 25v4a4 4 0 0 0 8 0v-2" stroke="#7DD3FC" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="28" cy="25" r="2.5" fill="#7DD3FC"/>
+      </svg>
+      <span>Portal del Tutor · Dr. Elman Urbina</span>
+    </div>
+    <button type="button" class="btn btn--sm btn--mobile-menu" id="mobile-menu-open" aria-label="Abrir menú de navegación" aria-expanded="false">
+      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M3 5h14M3 10h14M3 15h14" stroke-linecap="round"/>
+      </svg>
+      <span>Menú</span>
+    </button>
+  </header>
+
+  <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+  <div class="app-shell">
+
+    <aside class="sidebar" id="app-sidebar" aria-label="Menú del portal familiar">
+      <div class="sidebar__header">
+        <a href="tutor.html" class="brand-mark">
+          <svg class="brand-mark__svg" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect width="40" height="40" rx="10" fill="#0369A1" />
+            <path d="M13 13v5a7 7 0 0 0 14 0v-5" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M20 25v4a4 4 0 0 0 8 0v-2" stroke="#7DD3FC" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="28" cy="25" r="2.5" fill="#7DD3FC"/>
+            <circle cx="13" cy="12" r="1.8" fill="#FFFFFF"/>
+            <circle cx="27" cy="12" r="1.8" fill="#FFFFFF"/>
+          </svg>
+          <span class="brand-mark__text">
+            <span class="brand-mark__name">Dr. Elman Urbina</span>
+            <span class="brand-mark__sub">Portal Familiar del Tutor</span>
+          </span>
+        </a>
+        <button type="button" class="btn btn--sm sidebar__close-btn" id="mobile-menu-close" aria-label="Cerrar menú">Cerrar</button>
+      </div>
+
+      <nav class="nav-group" aria-label="Pestañas del portal del tutor">
+        <div class="nav-group__label">Seguimiento Pediátrico</div>
+
+        <button type="button" class="nav-item" data-nav-view="view-tut-dashboard" aria-current="page">
+          <span class="nav-item__left">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="3" y="3" width="6" height="6" rx="1.5"/>
+              <rect x="11" y="3" width="6" height="6" rx="1.5"/>
+              <rect x="3" y="11" width="6" height="6" rx="1.5"/>
+              <rect x="11" y="11" width="6" height="6" rx="1.5"/>
+            </svg>
+            <span>Dashboard del Tutor</span>
+          </span>
+        </button>
+
+        <button type="button" class="nav-item" data-nav-view="view-tut-dosis">
+          <span class="nav-item__left">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M10 3a5 5 0 0 0-5 5v3.5L3.5 13v1h13v-1L15 11.5V8a5 5 0 0 0-5-5Z" stroke-linejoin="round"/>
+              <path d="M8.5 16.5a1.5 1.5 0 0 0 3 0" stroke-linecap="round"/>
+            </svg>
+            <span>Dosis y Recetas</span>
+          </span>
+          <span class="nav-badge num" id="tut-nav-count-meds">0</span>
+        </button>
+
+        <button type="button" class="nav-item" data-nav-view="view-tut-vacunas">
+          <span class="nav-item__left">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M10 2.5 4 5v5c0 4 2.6 6.6 6 7.5 3.4-.9 6-3.5 6-7.5V5l-6-2.5Z" stroke-linejoin="round"/>
+              <path d="m7.5 10 1.8 1.8 3.5-3.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Carnet Digital PAI</span>
+          </span>
+          <span class="nav-badge num" id="tut-nav-vax-badge">PAI</span>
+        </button>
+
+        <button type="button" class="nav-item" data-nav-view="view-tut-citas">
+          <span class="nav-item__left">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="3" y="4" width="14" height="13" rx="2"/>
+              <path d="M7 2v4M13 2v4M3 8h14" stroke-linecap="round"/>
+            </svg>
+            <span>Citas y Horarios</span>
+          </span>
+        </button>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="user-card">
+          <span class="avatar avatar--warm" id="tut-sidebar-avatar">TF</span>
+          <div class="user-card__info">
+            <div class="user-card__name" id="tut-sidebar-name">Tutor Familiar</div>
+            <div class="user-card__role" id="tut-sidebar-dni">Sesión verificada</div>
+          </div>
+        </div>
+        <div class="sidebar__links">
+          <a href="login.html" id="tut-logout-link" class="sidebar__logout-btn">Cerrar sesión</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="canvas">
+
+      <header class="title-row">
+        <div class="title-row__left">
+          <h1 id="tut-page-title">Dashboard del Tutor</h1>
+          <p class="title-row__sub" id="tut-page-sub">
+            Seguimiento integral de citas médicas, esquema oficial de vacunación PAI y tratamientos activos.
+          </p>
+        </div>
+        <div class="title-row__actions">
+          <div class="patient-chip" id="tut-patient-chip" aria-live="polite">
+            <span class="patient-chip__dot" aria-hidden="true"></span>
+            <span id="tut-patient-chip-text">Cargando paciente...</span>
+          </div>
+          <button type="button" class="btn btn--primary" data-nav-view="view-tut-citas" id="tut-header-cta-btn">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="3" y="4" width="14" height="13" rx="2"/>
+              <path d="M7 2v4M13 2v4M3 8h14" stroke-linecap="round"/>
+            </svg>
+            <span id="tut-header-cta-label">Gestionar cita</span>
+          </button>
+        </div>
+      </header>
+
+      <section id="view-tut-dashboard" class="subview" aria-label="Dashboard del Tutor">
+
+        <div class="kpis kpis--3">
+
+          <div class="kpi">
+            <div class="kpi-label">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <rect x="3" y="4" width="14" height="13" rx="2"/>
+                <path d="M7 2v4M13 2v4M3 8h14" stroke-linecap="round"/>
+              </svg>
+              <span>Próxima cita</span>
+            </div>
+            <div class="kpi-value num" id="tut-kpi-next-appt">Cargando...</div>
+            <div class="kpi-delta" id="tut-kpi-next-appt-meta">Consultando agenda pediátrica</div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-label">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M10 2.5 4 5v5c0 4 2.6 6.6 6 7.5 3.4-.9 6-3.5 6-7.5V5l-6-2.5Z" stroke-linejoin="round"/>
+                <path d="m7.5 10 1.8 1.8 3.5-3.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Vacunas al día (%)</span>
+            </div>
+            <div class="kpi-value num" id="tut-kpi-vax-pct">0% <small>al día</small></div>
+            <div class="kpi-delta" id="tut-kpi-vax-delta">Consultando esquema PAI</div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-label">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M7 3h6v3H7z"/>
+                <rect x="5" y="6" width="10" height="11" rx="2"/>
+                <path d="M10 9v5M7.5 11.5h5" stroke-linecap="round"/>
+              </svg>
+              <span>Última receta activa</span>
+            </div>
+            <div class="kpi-value" id="tut-kpi-last-rx">Cargando...</div>
+            <div class="kpi-delta" id="tut-kpi-last-rx-meta">Verificando indicaciones médicas</div>
+          </div>
+        </div>
+
+        <div class="grid-12" style="margin-bottom: 20px;">
+
+          <article class="panel col-5">
+            <header class="panel__head">
+              <div class="panel__title-group">
+                <h2 class="panel__title">Signos Vitales y Antropometría</h2>
+                <p class="panel__meta">Registro clínico oficial del último control pediátrico</p>
+              </div>
+            </header>
+            <div style="padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div style="background: #F0FDF4; border: 1px solid #BBF7D0; padding: 12px; border-radius: 8px;">
+                <span style="font-size: 11px; font-weight: 700; color: #166534; display: block; text-transform: uppercase;">Peso Actual</span>
+                <span class="num" id="tut-child-weight" style="font-size: 20px; font-weight: 800; color: #14532D;">-- kg</span>
+                <span style="font-size: 11px; color: #16A34A; display: block;">Control en báscula</span>
+              </div>
+              <div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 12px; border-radius: 8px;">
+                <span style="font-size: 11px; font-weight: 700; color: #1E40AF; display: block; text-transform: uppercase;">Talla / Longitud</span>
+                <span class="num" id="tut-child-height" style="font-size: 20px; font-weight: 800; color: #1E3A8A;">-- cm</span>
+                <span style="font-size: 11px; color: #2563EB; display: block;">Tallímetro clínico</span>
+              </div>
+              <div style="background: #FAF5FF; border: 1px solid #E9D5FF; padding: 12px; border-radius: 8px;">
+                <span style="font-size: 11px; font-weight: 700; color: #6B21A8; display: block; text-transform: uppercase;">Perímetro Cefálico</span>
+                <span class="num" id="tut-child-pc" style="font-size: 20px; font-weight: 800; color: #581C87;">-- cm</span>
+                <span style="font-size: 11px; color: #9333EA; display: block;">Desarrollo craneal</span>
+              </div>
+              <div style="background: #FFF7ED; border: 1px solid #FED7AA; padding: 12px; border-radius: 8px;">
+                <span style="font-size: 11px; font-weight: 700; color: #9A3412; display: block; text-transform: uppercase;">Temperatura</span>
+                <span class="num" id="tut-child-temp" style="font-size: 20px; font-weight: 800; color: #7C2D12;">-- °C</span>
+                <span style="font-size: 11px; color: #EA580C; display: block;">Termómetro axilar</span>
+              </div>
+            </div>
+            <div style="padding: 0 16px 16px;">
+              <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 10px 12px; border-radius: 8px;">
+                <span style="font-size: 11px; font-weight: 700; color: #475569; display: block; text-transform: uppercase;">Antecedentes y Crónicos</span>
+                <p id="tut-child-antecedentes" style="margin: 4px 0 0; font-size: 12px; color: #334155; line-height: 1.4;">Sin antecedentes registrados</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel col-7">
+            <header class="panel__head">
+              <div class="panel__title-group">
+                <h2 class="panel__title">Curva de Crecimiento OMS (Peso para la Edad)</h2>
+                <p class="panel__meta">Comparación con patrones internacionales de la Organización Mundial de la Salud</p>
+              </div>
+              <span id="tut-growth-status" class="pill pill--pos" style="font-weight: 700; font-size: 12px;">🟢 Verde (Normal)</span>
+            </header>
+            <div style="padding: 16px;">
+              <div style="position: relative; height: 220px; width: 100%;">
+                <canvas id="tut-growth-chart"></canvas>
+              </div>
+            </div>
+            <footer class="panel__foot" style="font-size: 11px; color: var(--muted);">
+              <span>Líneas de referencia: +2 DE (máximo), Mediana OMS (verde) y -2 DE (mínimo). Marcador azul: niño(a).</span>
+            </footer>
+          </article>
+        </div>
+
+        <div class="grid-12">
+
+          <article class="panel col-7">
+            <header class="panel__head">
+              <div class="panel__title-group">
+                <h2 class="panel__title">Historial de Citas del Niño(a)</h2>
+                <p class="panel__meta">Registro cronológico de consultas programadas, confirmadas y atendidas</p>
+              </div>
+              <button type="button" class="btn btn--sm btn--ghost" data-nav-view="view-tut-citas">
+                Solicitar o reprogramar →
+              </button>
+            </header>
+
+            <div class="table-wrap">
+              <table class="taste-table" aria-label="Historial de citas del paciente">
+                <thead>
+                  <tr>
+                    <th>Fecha y hora</th>
+                    <th>Motivo de consulta</th>
+                    <th class="n">Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="tut-dashboard-citas-tbody">
+                  <tr>
+                    <td colspan="3" class="empty-cell">Cargando historial de citas desde la base de datos...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel col-5">
+            <header class="panel__head">
+              <div class="panel__title-group">
+                <h2 class="panel__title">Resumen de Salud y Esquema PAI</h2>
+                <p class="panel__meta" id="tut-vitals-summary">Antropometría y vacunas recientes</p>
+              </div>
+              <button type="button" class="btn btn--sm btn--ghost" data-nav-view="view-tut-vacunas">
+                Ver carnet →
+              </button>
+            </header>
+
+            <div class="triage-list" id="tut-vax-preview-list">
+
+            </div>
+
+            <footer class="panel__foot">
+              <span>Datos sincronizados con el expediente médico</span>
+              <button type="button" class="btn btn--sm btn--ghost" data-nav-view="view-tut-dosis">
+                Ver dosis del día →
+              </button>
+            </footer>
+          </article>
+        </div>
+      </section>
+
+      <section id="view-tut-dosis" class="subview is-hidden" aria-label="Cronograma de Dosis y Recetas">
+        <article class="panel">
+          <header class="panel__head">
+            <div class="panel__title-group">
+              <h2 class="panel__title">Cronograma de Dosis y Recetas Activas</h2>
+              <p class="panel__meta">Medicamentos indicados por el Dr. Elman Urbina · Confirma cada toma administrada</p>
+            </div>
+            <div class="panel__actions">
+              <span class="pill pill--info num" id="tut-next-dose-pill">Tratamiento activo</span>
+              <button type="button" class="btn btn--sm btn--green" id="btn-tut-confirm-all">
+                Marcar todas las dosis de hoy
+              </button>
+            </div>
+          </header>
+
+          <div class="triage-list" id="tut-meds-list">
+
+          </div>
+
+          <footer class="panel__foot">
+            <span>Recordatorios sincronizados con el número de WhatsApp del tutor registrado en Recepción</span>
+          </footer>
+        </article>
+      </section>
+
+      <section id="view-tut-vacunas" class="subview is-hidden" aria-label="Carnet Digital de Vacunas">
+        <article class="panel">
+          <header class="panel__head">
+            <div class="panel__title-group">
+              <h2 class="panel__title" id="tut-full-vax-title">Carnet Digital Oficial de Vacunación PAI</h2>
+              <p class="panel__meta">Las vacunas aplicadas muestran check de verificación, fecha oficial y firma médica</p>
+            </div>
+            <div class="vax-legend-group">
+              <span class="pill pill--vax-applied num" id="tut-full-vax-pct">0% completado</span>
+            </div>
+          </header>
+
+          <div class="table-wrap">
+            <table class="taste-table taste-table--pai" aria-label="Carnet de vacunación familiar PAI">
+              <thead>
+                <tr>
+                  <th>Biológico / Vacuna PAI</th>
+                  <th>Dosis del esquema</th>
+                  <th>Edad recomendada</th>
+                  <th>Estado en Carnet Digital</th>
+                  <th class="n">Fecha aplicada / Firma médica</th>
+                </tr>
+              </thead>
+              <tbody id="tut-full-vax-tbody">
+
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section id="view-tut-citas" class="subview is-hidden" aria-label="Solicitar o Reprogramar Cita">
+        <div class="grid-12">
+
+          <article class="panel col-7">
+            <header class="panel__head">
+              <div class="panel__title-group">
+                <h2 class="panel__title" id="tut-appt-form-title">Solicitar o reprogramar cita para mi hijo(a)</h2>
+                <p class="panel__meta" id="tut-appt-form-sub">
+                  Horario de clínica: Lunes a Viernes 08:00 AM – 05:00 PM · Sábados 08:00 AM – 12:30 PM
+                </p>
+              </div>
+              <span class="pill pill--info num" id="tut-appt-mode-badge">Nueva solicitud</span>
+            </header>
+
+            <div class="reschedule-banner is-hidden" id="tut-reschedule-banner" role="status" aria-live="polite">
+              <div class="reschedule-banner__title" id="tut-reschedule-banner-title">Cita confirmada activa</div>
+              <p class="reschedule-banner__desc" id="tut-reschedule-banner-desc"></p>
+            </div>
+
+            <form id="form-tut-appt" class="form-grid" novalidate>
+              <div class="field col-6">
+                <label for="tut-appt-date" class="field__label">Fecha disponible</label>
+                <input type="date" id="tut-appt-date" class="input num" required />
+                <span class="field__hint" id="tut-appt-date-hint">Selecciona de lunes a sábado</span>
+              </div>
+
+              <div class="field col-6">
+                <label for="tut-appt-time" class="field__label">Hora disponible (BD en vivo)</label>
+                <select id="tut-appt-time" class="select num" required>
+                  <option value="">Consultando horarios...</option>
+                </select>
+                <span class="field__hint" id="tut-appt-time-hint">Los bloques ocupados están bloqueados</span>
+              </div>
+
+              <div class="field col-12">
+                <div class="slots-header">
+                  <span class="field__label">Bloques del día seleccionado</span>
+                  <span class="slots-legend">
+                    <span class="slots-legend__item"><span class="slot-dot slot-dot--free"></span>Disponible</span>
+                    <span class="slots-legend__item"><span class="slot-dot slot-dot--busy"></span>Ocupado</span>
+                  </span>
+                </div>
+                <div class="tut-slots-grid" id="tut-appt-slots-grid" aria-live="polite">
+
+                </div>
+              </div>
+
+              <div class="field col-12">
+                <label for="tut-appt-reason" class="field__label">Motivo de la consulta</label>
+                <input
+                  type="text"
+                  id="tut-appt-reason"
+                  class="input"
+                  placeholder="Ej. Aplicación de siguiente dosis PAI y control de peso y talla"
+                  value="Control de crecimiento y esquema de vacunación PAI"
+                  required
+                />
+              </div>
+
+              <div class="col-12 form-actions">
+                <button type="submit" class="btn btn--primary" id="btn-tut-appt-submit">
+                  Solicitar cita
+                </button>
+              </div>
+            </form>
+          </article>
+
+          <article class="panel col-5">
+            <header class="panel__head">
+              <div class="panel__title-group">
+                <h2 class="panel__title">Mis Citas Registradas</h2>
+                <p class="panel__meta">Estado en tiempo real y política de reprogramación</p>
+              </div>
+            </header>
+
+            <div class="appt-policy-box">
+              <div class="appt-policy-box__title">Reglas de agenda familiar</div>
+              <ul class="appt-policy-list">
+                <li>Los horarios muestran disponibilidad real verificada en la base de datos.</li>
+                <li>Los bloques ya reservados por otros pacientes se bloquean automáticamente.</li>
+                <li>Si tienes una cita <strong>CONFIRMADA</strong> próxima, puedes reprogramarla <strong>una única vez</strong> desde este portal.</li>
+              </ul>
+            </div>
+
+            <div class="triage-list" id="tut-citas-side-list">
+
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  <script src="js/tutor.js" defer></script>
+  <script src = "js/push.js" ></script>
+</body>
+</html>

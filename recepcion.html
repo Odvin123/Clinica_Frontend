@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sistema Operativo de Recepción Pediátrica · Ley 787 y Normativa MINSA · Clínica Dr. Elman Urbina." />
+  <meta name="theme-color" content="#0F172A" />
+  <title>Recepción y Admisión Clínica | Clínica Pediátrica Dr. Elman Urbina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/recepcion.css" />
+  <script src="js/guardian.js"></script>
+</head>
+<body data-page="recepcion">
+
+  <header class="mobile-topbar" aria-label="Navegación móvil de recepción">
+    <div class="mobile-topbar__brand">
+      <svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect width="40" height="40" rx="10" fill="#1E56C5" />
+        <path d="M13 13v5a7 7 0 0 0 14 0v-5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M20 25v4a4 4 0 0 0 8 0v-2" stroke="#93C5FD" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="28" cy="25" r="2.5" fill="#93C5FD"/>
+      </svg>
+      <span>Recepción · Dr. Elman Urbina</span>
+    </div>
+    <button type="button" class="btn btn--sm btn--outline" id="mobile-menu-open" aria-label="Abrir menú" aria-expanded="false">
+      Menú
+    </button>
+  </header>
+
+  <div class="app-shell">
+
+    <aside class="sidebar" id="app-sidebar" aria-label="Menú principal de recepción">
+      <div class="sidebar__header">
+        <a href="index.html" class="brand-mark">
+          <svg class="brand-mark__svg" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect width="40" height="40" rx="10" fill="#1E56C5" />
+            <path d="M13 13v5a7 7 0 0 0 14 0v-5" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M20 25v4a4 4 0 0 0 8 0v-2" stroke="#93C5FD" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="28" cy="25" r="2.5" fill="#93C5FD"/>
+            <circle cx="13" cy="12" r="1.8" fill="#FFFFFF"/>
+            <circle cx="27" cy="12" r="1.8" fill="#FFFFFF"/>
+          </svg>
+          <span class="brand-mark__text">
+            <span class="brand-mark__name">Dr. Elman Urbina</span>
+            <span class="brand-mark__sub">Clínica Pediátrica · Recepción</span>
+          </span>
+        </a>
+        <button type="button" class="btn btn--sm sidebar__close-btn" id="mobile-menu-close">Cerrar</button>
+      </div>
+
+      <nav class="nav-group" aria-label="Módulos operativos de recepción">
+        <div class="nav-group__label">Operación Clínica</div>
+
+        <button type="button" class="nav-item" data-tab-target="tab-dashboard" aria-current="page">
+          <span class="nav-item__left">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="3" y="3" width="6" height="6" rx="1.5"/>
+              <rect x="11" y="3" width="6" height="6" rx="1.5"/>
+              <rect x="3" y="11" width="6" height="6" rx="1.5"/>
+              <rect x="11" y="11" width="6" height="6" rx="1.5"/>
+            </svg>
+            <span>Dashboard</span>
+          </span>
+          <span class="nav-badge num" id="rec-nav-count-agenda">0</span>
+        </button>
+
+        <button type="button" class="nav-item" data-tab-target="tab-citas">
+          <span class="nav-item__left">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="3" y="4" width="14" height="13" rx="2"/>
+              <path d="M7 2v4M13 2v4M3 8h14" stroke-linecap="round"/>
+            </svg>
+            <span>Citas</span>
+          </span>
+          <span class="nav-badge num" id="rec-nav-count-citas">0</span>
+        </button>
+
+        <button type="button" class="nav-item" data-tab-target="tab-familias">
+          <span class="nav-item__left">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <circle cx="10" cy="7" r="3.2"/>
+              <path d="M4.5 16.5c.9-2.8 3-4.2 5.5-4.2s4.6 1.4 5.5 4.2" stroke-linecap="round"/>
+            </svg>
+            <span>Familias</span>
+          </span>
+          <span class="nav-badge num" id="rec-nav-count-patients">0</span>
+        </button>
+
+        <button type="button" class="nav-item" data-tab-target="tab-alertas">
+          <span class="nav-item__left">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M10 3a5 5 0 0 0-5 5v3.5L3.5 13v1h13v-1L15 11.5V8a5 5 0 0 0-5-5Z" stroke-linejoin="round"/>
+              <path d="M8.5 16.5a1.5 1.5 0 0 0 3 0" stroke-linecap="round"/>
+            </svg>
+            <span>Alertas</span>
+          </span>
+          <span class="nav-badge num" id="rec-nav-count-alerts">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="rec-sidebar-user-row">
+          <div class="user-card">
+            <span class="avatar">RC</span>
+            <div class="user-card__info">
+              <div class="user-card__name">Recepción Clínica</div>
+              <div class="user-card__role">Admisión y Triage</div>
+            </div>
+          </div>
+          <a href="login.html" class="rec-sidebar-logout" title="Cerrar sesión de recepción">Salir</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="canvas">
+      <div class="canvas__inner">
+
+        <header class="rec-topbar" id="rec-global-topbar">
+          <div class="rec-topbar__titles">
+            <h1 class="rec-header__title" id="rec-view-title">Dashboard Operativo</h1>
+            <p class="rec-header__sub" id="rec-view-subtitle">
+              Control de agenda del día, check-in de pacientes y priorización por Triage pediátrico.
+            </p>
+          </div>
+
+          <div class="rec-topbar__controls">
+            <div class="rec-global-search" id="rec-global-search-wrap">
+              <svg class="rec-global-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3" stroke-linecap="round"/>
+              </svg>
+              <input type="search" id="rec-global-search-input" class="input rec-global-search__input" placeholder="Buscar por nombre, DNI o teléfono..." aria-label="Buscador global por nombre, DNI o teléfono" />
+            </div>
+          </div>
+        </header>
+
+        <section id="tab-dashboard" role="tabpanel" class="rec-tab-panel">
+          <div class="rec-kpi-grid">
+            <div class="rec-kpi-card">
+              <div class="rec-kpi-icon rec-kpi-icon--blue" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg></div>
+              <div class="rec-kpi-content"><div class="rec-kpi-number num" id="rec-kpi-citas-hoy">0</div><div class="rec-kpi-label">Citas Registradas</div></div>
+            </div>
+            <div class="rec-kpi-card">
+              <div class="rec-kpi-icon rec-kpi-icon--rose" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="rec-kpi-content"><div class="rec-kpi-number num" id="rec-kpi-triage">0</div><div class="rec-kpi-label">En Sala (Ordenados por Triage)</div></div>
+            </div>
+            <div class="rec-kpi-card">
+              <div class="rec-kpi-icon rec-kpi-icon--emerald" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke-linecap="round"/></svg></div>
+              <div class="rec-kpi-content"><div class="rec-kpi-number num" id="rec-kpi-rx-inbox">0</div><div class="rec-kpi-label">Recetas Pendientes de Programar</div></div>
+            </div>
+          </div>
+
+          <div class="rec-dashboard-split">
+            <article class="rec-panel">
+              <header class="rec-panel__head">
+                <div class="rec-panel__titles">
+                  <h2 class="rec-panel__title">Agenda de Hoy</h2>
+                  <p class="rec-panel__sub">Seguimiento de citas y estado en tiempo real (Pendiente, En Sala, Atendida)</p>
+                </div>
+                <div class="rec-panel__tools" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <label for="rec-agenda-date-filter" style="font-size:12px; font-weight:700; color:var(--text); text-transform:uppercase; letter-spacing:0.5px; margin:0;">Fecha:</label>
+                    <input type="date" id="rec-agenda-date-filter" class="input num" style="height:34px; padding:0 8px; font-size:13px; font-weight:600; width:auto;" aria-label="Filtrar citas por fecha" />
+                  </div>
+                  <div class="rec-date-pills" id="rec-agenda-quick-pills" role="group" aria-label="Acceso rápido por fecha">
+                    <button type="button" class="rec-date-pill is-active" data-rec-date-offset="0" aria-pressed="true">Hoy</button>
+                    <button type="button" class="rec-date-pill" data-rec-date-offset="1" aria-pressed="false">Mañana</button>
+                    <button type="button" class="rec-date-pill" data-rec-date-offset="2" aria-pressed="false">En 2 días</button>
+                  </div>
+                </div>
+              </header>
+              <div class="rec-list-stack" id="rec-agenda-stream" aria-live="polite"></div>
+            </article>
+
+            <article class="rec-panel">
+              <header class="rec-panel__head">
+                <div class="rec-panel__titles">
+                  <h2 class="rec-panel__title">Sala de Espera y Triage</h2>
+                  <p class="rec-panel__sub">Prioridad clínica activa (Rojos arriba)</p>
+                </div>
+                <span class="rec-badge rec-badge--blue">En vivo</span>
+              </header>
+              <div class="rec-list-stack" id="rec-triage-list" aria-live="polite"></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="tab-citas" role="tabpanel" class="rec-tab-panel hidden">
+          <div class="rec-calendar-split">
+            <article class="rec-panel">
+              <header class="rec-panel__head">
+                <div class="rec-panel__titles">
+                  <h2 class="rec-panel__title">Calendario de Bloques · Dr. Elman Urbina</h2>
+                  <p class="rec-panel__sub">Los bloques reservados muestran el nombre del paciente; los bloques libres indican Disponible.</p>
+                </div>
+                <div class="rec-panel__tools">
+                  <div class="rec-cal-date-filter-wrap">
+                    <label for="rec-cal-date-filter" class="rec-cal-date-filter__label">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/>
+                        <path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/>
+                      </svg>
+                      <span>Fecha:</span>
+                    </label>
+                    <input type="date" id="rec-cal-date-filter" class="input num rec-cal-date-filter__input" aria-label="Filtrar bloques del calendario por fecha" />
+                  </div>
+                  <div class="rec-date-pills" id="rec-cal-day-filters" role="group" aria-label="Acceso rápido por fecha en calendario">
+                    <button type="button" class="rec-date-pill is-active" data-rec-date-offset="0" aria-pressed="true">Hoy</button>
+                    <button type="button" class="rec-date-pill" data-rec-date-offset="1" aria-pressed="false">Mañana</button>
+                    <button type="button" class="rec-date-pill" data-rec-date-offset="2" aria-pressed="false">En 2 días</button>
+                  </div>
+                </div>
+              </header>
+
+              <div class="rec-cal-legend">
+                <span class="rec-cal-legend__item"><span class="rec-cal-dot rec-cal-dot--free"></span><span>Disponible (Clic para seleccionar horario)</span></span>
+                <span class="rec-cal-legend__item"><span class="rec-cal-dot rec-cal-dot--busy"></span><span>Reservado con nombre de paciente</span></span>
+                <span class="rec-cal-legend__schedule num" id="rec-cal-schedule-badge">Horario: Lunes a Viernes 08:00 – 17:00 · Sábados 08:00 – 12:30</span>
+              </div>
+
+              <div class="rec-slots-grid" id="rec-calendar-slots-grid" aria-live="polite"></div>
+            </article>
+
+            <aside class="rec-panel rec-booking-panel" id="rec-booking-panel-card" aria-label="Formulario Agendar Nueva Cita">
+              <header class="rec-panel__head">
+                <div class="rec-panel__titles">
+                  <h2 class="rec-panel__title">Agendar Nueva Cita</h2>
+                  <p class="rec-panel__sub">Busca al paciente por nombre, DNI o teléfono y asigna prioridad Triage</p>
+                </div>
+              </header>
+
+              <form id="form-calendar-appt" class="rec-form-stack" novalidate>
+                <div class="field">
+                  <label for="cal-appt-patient-search" class="field__label">Buscador de Paciente (Typeahead)</label>
+                  <div class="rec-typeahead-wrap">
+                    <input type="search" id="cal-appt-patient-search" class="input" placeholder="Escribe nombre del niño, tutor, DNI o teléfono..." autocomplete="off" />
+                  </div>
+                  <select id="cal-appt-patient" class="select" style="margin-top:6px;" required></select>
+                </div>
+                <div class="rec-modal-grid">
+                  <div class="field">
+                    <label for="cal-appt-date" class="field__label">Fecha de consulta</label>
+                    <input type="date" id="cal-appt-date" class="input num" required />
+                  </div>
+                  <div class="field">
+                    <label for="cal-appt-time" class="field__label">Bloque horario</label>
+                    <select id="cal-appt-time" class="select num" required></select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="cal-appt-triage" class="field__label">Prioridad Triage</label>
+                  <select id="cal-appt-triage" class="select rec-triage-select rec-triage-select--verde">
+                    <option value="verde" class="triage-opt-verde" style="background-color:#DCFCE7; color:#065F46; font-weight:600;" selected>🟢 Verde · Control Niño Sano / Vacuna PAI</option>
+                    <option value="amarillo" class="triage-opt-amarillo" style="background-color:#FEF3C7; color:#92400E; font-weight:600;">🟡 Amarillo · Fiebre moderada / Tos</option>
+                    <option value="rojo" class="triage-opt-rojo" style="background-color:#FEE2E2; color:#991B1B; font-weight:600;">🔴 Rojo · Urgencia pediátrica inmediata</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="cal-appt-reason" class="field__label">Motivo clínico de consulta</label>
+                  <input type="text" id="cal-appt-reason" class="input" placeholder="Ej. Control de crecimiento OMS y refuerzo Pentavalente" required />
+                </div>
+                <div class="rec-overlap-notice" id="cal-overlap-feedback" role="status">Selecciona un bloque Disponible en el calendario o en el selector de hora.</div>
+                <button type="submit" class="btn btn--primary btn--full rec-interactive-btn">Confirmar y Bloquear Horario</button>
+              </form>
+            </aside>
+          </div>
+        </section>
+
+        <section id="tab-familias" role="tabpanel" class="rec-tab-panel hidden">
+          <article class="rec-panel rec-panel--table">
+            <header class="rec-panel__head rec-panel__head--padded">
+              <div class="rec-panel__titles">
+                <h2 class="rec-panel__title">Padrón de Familias, Tutores y Expedientes</h2>
+                <p class="rec-panel__sub">El estado del tutor es Activo únicamente cuando ya cambió su PIN por una contraseña personal.</p>
+              </div>
+              <div class="rec-panel__tools">
+                <input type="search" id="rec-family-search" class="input rec-search-input" placeholder="Filtrar por DNI, teléfono, tutor o niño..." aria-label="Filtrar familias por DNI o nombre" />
+                <button type="button" class="btn btn--primary rec-interactive-btn" data-open-modal="modal-new-patient">+ Nuevo Tutor e Hijo</button>
+              </div>
+            </header>
+
+            <div class="rec-table-wrap">
+              <table class="rec-table" aria-label="Tabla de Familias y Expedientes">
+                <thead>
+                  <tr>
+                    <th>Tutor Responsable (Nombre, DNI y Teléfono)</th>
+                    <th>Hijos Vinculados</th>
+                    <th>Estado de Credenciales (PIN)</th>
+                    <th>Resumen Clínico / Crónicos</th>
+                    <th class="rec-table__th-right">Expediente</th>
+                  </tr>
+                </thead>
+                <tbody id="rec-directory-tbody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section id="tab-alertas" role="tabpanel" class="rec-tab-panel hidden">
+          <div class="rec-section-grid">
+            <article class="rec-panel rec-col-6">
+              <header class="rec-panel__head">
+                <div class="rec-panel__titles">
+                  <h2 class="rec-panel__title">Recetas Pendientes de Programar</h2>
+                  <p class="rec-panel__sub">Enviadas por el Doctor (PENDIENTE_RECEPCION). Haz clic en Programar para activarlas.</p>
+                </div>
+                <span class="rec-badge rec-badge--blue num" id="rec-rx-badge-count">0 pendientes</span>
+              </header>
+              <div class="rec-list-stack" id="rec-doctor-rx-inbox" aria-live="polite"></div>
+            </article>
+
+            <article class="rec-panel rec-col-6">
+              <header class="rec-panel__head">
+                <div class="rec-panel__titles">
+                  <h2 class="rec-panel__title">Recetas Activas y Recordatorios WhatsApp</h2>
+                  <p class="rec-panel__sub">Recetas programadas con estado ACTIVA enviando recordatorios de toma a los tutores.</p>
+                </div>
+                <span class="rec-badge rec-badge--green">Pasarela Activa</span>
+              </header>
+              <div class="rec-list-stack" id="rec-active-alerts-list" aria-live="polite"></div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="rec-drawer-backdrop" id="drawer-expediente" aria-hidden="true">
+    <aside class="rec-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-child-name">
+      <header class="rec-drawer__head">
+        <div class="rec-drawer__title-group">
+          <div class="rec-drawer__badges">
+            <span class="rec-badge rec-badge--neutral num" id="drawer-child-id">PACIENTE</span>
+            <span class="rec-badge rec-badge--blue" id="drawer-status-badge">Control de Medidas e Historial</span>
+          </div>
+          <h2 class="rec-drawer__title" id="drawer-child-name">—</h2>
+          <p class="rec-drawer__sub" id="drawer-child-meta">—</p>
+        </div>
+        <button type="button" class="btn btn--sm btn--outline" id="drawer-close-btn" aria-label="Cerrar panel de expediente">Cerrar</button>
+      </header>
+
+      <div class="rec-drawer__body">
+
+        <section class="rec-drawer__section">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <h3 class="rec-drawer__section-title" style="margin-bottom:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              <span>Medidas y Antropometría Actual</span>
+            </h3>
+            <button type="button" class="btn btn--sm btn--primary" id="drawer-update-medidas-btn" style="padding: 5px 12px; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              Actualizar Medidas
+            </button>
+          </div>
+          <div class="rec-drawer__info-grid" id="drawer-medidas-grid">
+            <div class="rec-drawer__kv">
+              <span class="rec-drawer__k">Peso Actual</span>
+              <span class="rec-drawer__v num" id="drawer-med-peso">-- kg</span>
+            </div>
+            <div class="rec-drawer__kv">
+              <span class="rec-drawer__k">Talla / Longitud</span>
+              <span class="rec-drawer__v num" id="drawer-med-talla">-- cm</span>
+            </div>
+            <div class="rec-drawer__kv">
+              <span class="rec-drawer__k">Perímetro Cefálico</span>
+              <span class="rec-drawer__v num" id="drawer-med-pc">-- cm</span>
+            </div>
+            <div class="rec-drawer__kv">
+              <span class="rec-drawer__k">Temperatura</span>
+              <span class="rec-drawer__v num" id="drawer-med-temp">-- °C</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="rec-drawer__section">
+          <h3 class="rec-drawer__section-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><path d="M12 9v4M12 17h.01" stroke-linecap="round"/></svg>
+            <span>Alergias y Problemas Crónicos</span>
+          </h3>
+          <div class="rec-drawer__callout" id="drawer-child-chronic">Sin alergias ni antecedentes crónicos reportados.</div>
+        </section>
+
+        <section class="rec-drawer__section">
+          <h3 class="rec-drawer__section-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            <span>Tutor Vinculado y Credencial de Acceso</span>
+          </h3>
+          <div class="rec-drawer__info-grid" id="drawer-tutor-info"></div>
+        </section>
+
+        <section class="rec-drawer__section">
+          <h3 class="rec-drawer__section-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+            <span>Historial de Vacunación PAI (Solo Lectura)</span>
+          </h3>
+          <div class="rec-list-stack" id="drawer-vaccines-list"></div>
+        </section>
+      </div>
+
+      <footer class="rec-drawer__foot">
+        <button type="button" class="btn btn--primary btn--sm" id="drawer-foot-update-medidas-btn">Actualizar Medidas</button>
+        <button type="button" class="btn btn--outline btn--sm" id="drawer-book-btn">Agendar cita a este niño</button>
+      </footer>
+    </aside>
+  </div>
+
+  <div class="modal-backdrop" id="modal-schedule-rx" aria-hidden="true">
+    <div class="modal-dialog rec-modal-dialog rec-modal-dialog--sm" role="dialog" aria-modal="true" aria-labelledby="modal-rx-title">
+      <div class="modal-dialog__head">
+        <div>
+          <h2 class="modal-dialog__title" id="modal-rx-title">Programar Horarios de Medicamento</h2>
+          <p class="rec-modal-sub" id="modal-rx-subtitle">Configura el inicio de toma para activar la receta y generar las alertas de WhatsApp.</p>
+        </div>
+        <button type="button" class="btn btn--sm btn--outline" data-close-modal="modal-schedule-rx">Cerrar</button>
+      </div>
+
+      <form id="rec-alert-form" class="rec-form-stack" novalidate>
+        <input type="hidden" id="alert-rx-id" value="" />
+        <input type="hidden" id="alert-tutor-id" value="" />
+        <div class="field">
+          <label for="alert-pat-name" class="field__label">Paciente y Tutor receptor</label>
+          <input type="text" id="alert-pat-name" class="input" readonly style="background:#F8FAFC; font-weight:600;" />
+        </div>
+        <div class="rec-modal-grid">
+          <div class="field">
+            <label for="alert-med-name" class="field__label">Medicamento prescrito</label>
+            <input type="text" id="alert-med-name" class="input" readonly style="background:#F8FAFC;" required />
+          </div>
+          <div class="field">
+            <label for="alert-med-dose" class="field__label">Dosis indicada</label>
+            <input type="text" id="alert-med-dose" class="input num" readonly style="background:#F8FAFC;" required />
+          </div>
+        </div>
+        <div class="rec-modal-grid">
+          <div class="field">
+            <label for="alert-start-hour" class="field__label">Hora y Minutos de Primera Toma *</label>
+            <input type="time" id="alert-start-hour" class="input num" value="08:00" required style="font-weight:600; font-size:14px;" />
+          </div>
+          <div class="field">
+            <label for="alert-med-days" class="field__label">Duración del tratamiento (días)</label>
+            <input type="number" id="alert-med-days" class="input num" value="5" min="1" max="30" required />
+          </div>
+        </div>
+
+        <div class="rec-modal-grid">
+          <div class="field">
+            <label for="alert-interval-unit" class="field__label">Tipo de Intervalo Push *</label>
+            <select id="alert-interval-unit" class="select">
+              <option value="horas" selected>Cada X horas</option>
+              <option value="minutos">Cada X minutos (Prueba / Rápido)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="alert-interval-val" class="field__label">Valor del Intervalo (X) *</label>
+            <input type="number" id="alert-interval-val" class="input num" value="8" min="1" max="1440" required style="font-weight:700;" />
+          </div>
+        </div>
+
+        <input type="hidden" id="alert-med-freq" value="8" />
+
+        <div class="rec-schedule-preview" id="rec-schedule-preview-box" style="display:flex; flex-direction:column; gap:6px;">
+          <div>
+            <span class="rec-schedule-preview__label">Cronograma calculado:</span>
+            <strong class="rec-schedule-preview__times num" id="rec-schedule-preview-text">Cada 8 horas (08:00 AM · 04:00 PM · 12:00 AM)</strong>
+          </div>
+          <div style="padding-top:6px; border-top:1px dashed #CBD5E1; font-size:13px; color:#0F766E; font-weight:700;" id="alert-next-send-preview">
+            Próximo envío: Calculando...
+          </div>
+        </div>
+        <div class="modal-dialog__foot" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:space-between;">
+          <button type="button" class="btn btn--outline btn--sm" id="btn-rec-modal-test-push" style="border-color:#0F766E; color:#0F766E; font-weight:700;">
+            🔔 Probar Push Ahora
+          </button>
+          <div style="display:flex; gap:8px;">
+            <button type="button" class="btn btn--outline" data-close-modal="modal-schedule-rx">Cancelar</button>
+            <button type="submit" class="btn btn--primary rec-interactive-btn">Activar y Programar Receta</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-new-patient" aria-hidden="true">
+    <div class="modal-dialog rec-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-pat-title">
+      <div class="modal-dialog__head">
+        <div>
+          <h2 class="modal-dialog__title" id="modal-pat-title">Alta de Tutor y Paciente Pediátrico</h2>
+          <p class="rec-modal-sub">Registro único en recepción con generación de PIN de acceso familiar (Ley 787).</p>
+        </div>
+        <button type="button" class="btn btn--sm btn--outline" data-close-modal="modal-new-patient">Cerrar</button>
+      </div>
+
+      <form id="form-modal-patient" class="rec-modal-form" novalidate>
+        <div class="rec-modal-section">
+          <div class="rec-modal-section__head">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            <h3 class="rec-modal-section__title">Datos del Tutor Responsable</h3>
+          </div>
+          <div class="rec-modal-grid">
+            <div class="field">
+              <label for="reg-tutor-name" class="field__label">Nombre completo del Tutor</label>
+              <input type="text" id="reg-tutor-name" class="input" placeholder="Ej. Marisol Roblero Sequeira" required />
+            </div>
+            <div class="field">
+              <label for="reg-tutor-dni" class="field__label">Cédula de Identidad (DNI)</label>
+              <input type="text" id="reg-tutor-dni" class="input num" placeholder="121-180492-0004M" required />
+            </div>
+            <div class="field">
+              <label for="reg-tutor-phone" class="field__label">Teléfono Celular (WhatsApp)</label>
+              <input type="tel" id="reg-tutor-phone" class="input num" placeholder="88421930" required />
+            </div>
+            <div class="field">
+              <label for="reg-tutor-relation" class="field__label">Parentesco</label>
+              <select id="reg-tutor-relation" class="select">
+                <option value="Madre" selected>Madre</option>
+                <option value="Padre">Padre</option>
+                <option value="Abuela / Tutor Legal">Abuela / Tutor Legal</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="reg-tutor-email" class="field__label">Correo electrónico</label>
+              <input type="email" id="reg-tutor-email" class="input" placeholder="tutor@familia.ni" />
+            </div>
+            <div class="field">
+              <label for="reg-tutor-pin" class="field__label">PIN de Acceso Generado (4 dígitos)</label>
+              <input type="text" id="reg-tutor-pin" class="input num" value="4829" readonly style="font-weight:700; color:#0F766E; background:#F8FAFC;" />
+            </div>
+          </div>
+        </div>
+
+        <div class="rec-modal-section rec-modal-section--spaced">
+          <div class="rec-modal-section__head">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <h3 class="rec-modal-section__title">Signos Vitales y Antecedentes (Registro de Recepción)</h3>
+          </div>
+          <p style="font-size:12px; color:#64748B; margin:0 0 12px 0;">El paciente ya debe ingresar con sus datos clínicos a la consulta del doctor.</p>
+          <div class="rec-modal-grid">
+            <div class="field">
+              <label for="reg-child-name" class="field__label">Nombre completo del niño(a)</label>
+              <input type="text" id="reg-child-name" class="input" placeholder="Ej. Camila Valentina Blandón" required />
+            </div>
+            <div class="field">
+              <label for="reg-child-dob" class="field__label">Fecha de nacimiento</label>
+              <input type="date" id="reg-child-dob" class="input num" value="2024-05-14" required />
+            </div>
+            <div class="field">
+              <label for="reg-child-weight" class="field__label">Peso (kg) *</label>
+              <input type="number" step="0.01" id="reg-child-weight" class="input num" placeholder="Ej. 11.8" required />
+            </div>
+            <div class="field">
+              <label for="reg-child-talla" class="field__label">Talla (cm) *</label>
+              <input type="number" step="0.1" id="reg-child-talla" class="input num" placeholder="Ej. 85.0" required />
+            </div>
+            <div class="field">
+              <label for="reg-child-head" class="field__label">Perímetro Cefálico (cm)</label>
+              <input type="number" step="0.1" id="reg-child-head" class="input num" placeholder="Ej. 46.5" />
+            </div>
+            <div class="field">
+              <label for="reg-child-temp" class="field__label">Temperatura (°C) *</label>
+              <input type="number" step="0.1" id="reg-child-temp" class="input num" placeholder="Ej. 36.8" required />
+            </div>
+            <div class="field">
+              <label for="reg-child-triage" class="field__label">Clasificación Triage</label>
+              <select id="reg-child-triage" class="select rec-triage-select rec-triage-select--verde">
+                <option value="verde" style="background-color:#DCFCE7; color:#065F46; font-weight:600;" selected>🟢 Verde · Control o Vacuna PAI</option>
+                <option value="amarillo" style="background-color:#FEF3C7; color:#92400E; font-weight:600;">🟡 Amarillo · Fiebre moderada</option>
+                <option value="rojo" style="background-color:#FEE2E2; color:#991B1B; font-weight:600;">🔴 Rojo · Urgencia pediátrica</option>
+              </select>
+            </div>
+            <div class="field col-12" style="grid-column: 1 / -1;">
+              <label class="field__label">Alergias / Problemas Crónicos (Asma, Rinitis, etc.)</label>
+              <div class="tag-input-wrapper" id="new-patient-tags-wrapper" style="border:1px solid #CBD5E1; border-radius:6px; padding:6px 8px; background:#FFFFFF; min-height:42px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;">
+                <div class="tags-container" id="new-patient-tags-container" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+                <input type="text" id="reg-child-allergy-input" class="tag-input-text" placeholder="Escribe y presiona Enter (ej. Asma)..." style="border:none; outline:none; flex:1; min-width:160px; font-size:13px; padding:4px;" />
+              </div>
+              <input type="hidden" id="reg-child-allergy" name="cronicos" value="" />
+              <span style="font-size:11px; color:#64748B;">Presiona Enter para agregar cada condición como etiqueta.</span>
+            </div>
+            <div class="field col-12" style="grid-column: 1 / -1;">
+              <label class="field__label">Antecedentes Perinatales e Historial Familiar (Tags)</label>
+              <div class="tag-input-wrapper" id="new-patient-ant-tags-wrapper" style="border:1px solid #CBD5E1; border-radius:6px; padding:6px 8px; background:#FFFFFF; min-height:42px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;">
+                <div class="tags-container" id="new-patient-ant-tags-container" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+                <input type="text" id="reg-child-ant-input" class="tag-input-text" placeholder="Escribe y presiona Enter (ej. Parto prematuro, Asma materna)..." style="border:none; outline:none; flex:1; min-width:160px; font-size:13px; padding:4px;" />
+              </div>
+              <input type="hidden" id="reg-child-antecedentes" name="antecedentes" value="" />
+              <span style="font-size:11px; color:#64748B;">Presiona Enter para agregar antecedentes perinatales o familiares.</span>
+            </div>
+
+            <div class="field col-12" style="grid-column: 1 / -1; margin-top: 10px;">
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px;">
+                <div style="font-weight:700; color:#0F172A; font-size:13px; display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                  <span>💉</span><span>Registro de Vacunas PAI (Según Cartilla Física)</span>
+                </div>
+                <p style="font-size:11px; color:#64748B; margin:0 0 10px 0;">
+                  Marca las vacunas que el niño(a) ya tiene aplicadas en su cartilla física de salud:
+                </p>
+                <div id="new-patient-vax-list" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap:8px; font-size:12px;">
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="BCG"> BCG</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="Hepatitis B"> Hepatitis B</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="Pentavalente"> Pentavalente</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="Polio"> Polio</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="Rotavirus"> Rotavirus</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="Neumococo"> Neumococo</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="MMR"> MMR</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="DPT"> DPT</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="dT"> dT</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="VPH"> VPH</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="Influenza"> Influenza</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="Fiebre Amarilla"> Fiebre Amarilla</label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-alta" value="COVID-19"> COVID-19</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-dialog__foot">
+          <button type="button" class="btn btn--outline" data-close-modal="modal-new-patient">Cancelar</button>
+          <button type="submit" class="btn btn--primary rec-interactive-btn">Registrar Familia y Generar PIN</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-validar-tutor" aria-hidden="true">
+    <div class="modal-dialog rec-modal-dialog rec-modal-dialog--sm" role="dialog" aria-modal="true" aria-labelledby="modal-val-title">
+      <div class="modal-dialog__head">
+        <div>
+          <h2 class="modal-dialog__title" id="modal-val-title">Validar Cita y Tutor en Recepción</h2>
+          <p class="rec-modal-sub">Confirmación de DNI, antecedentes y paso del paciente a estado En Sala.</p>
+        </div>
+        <button type="button" class="btn btn--sm btn--outline" data-close-modal="modal-validar-tutor">Cerrar</button>
+      </div>
+      <form id="form-validar-tutor" class="rec-modal-form" novalidate style="padding: 16px 24px;">
+        <input type="hidden" id="validar-cita-id">
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px;">
+          <div class="field">
+            <label class="field__label">Tutor Responsable</label>
+            <input type="text" id="validar-tutor-nombre" class="input" readonly style="background:#F1F5F9; font-size:13px;" />
+          </div>
+          <div class="field">
+            <label class="field__label">Teléfono</label>
+            <input type="text" id="validar-tutor-telefono" class="input num" readonly style="background:#F1F5F9; font-size:13px;" />
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px;">
+          <div class="field">
+            <label class="field__label">Paciente Menor</label>
+            <input type="text" id="validar-paciente-nombre" class="input" readonly style="background:#F1F5F9; font-size:13px;" />
+          </div>
+          <div class="field">
+            <label class="field__label">PIN de Activación</label>
+            <input type="text" id="validar-pin" class="input num" readonly style="background:#FFE4E6; color:#BE123C; font-weight:800; font-size:15px; text-align:center; letter-spacing:1px;" />
+          </div>
+        </div>
+
+        <div class="field" style="margin-bottom:10px;">
+          <label class="field__label">Motivo de Consulta (Landing)</label>
+          <input type="text" id="validar-motivo" class="input" readonly style="background:#F1F5F9; font-size:13px;" />
+        </div>
+
+        <div class="field" style="margin-bottom:12px;">
+          <label class="field__label" for="validar-dni">Cédula / DNI del Tutor *</label>
+          <input type="text" id="validar-dni" class="input num" placeholder="Ej. 121-180492-0004M" maxlength="16" required>
+        </div>
+
+        <div class="field" style="margin-bottom:12px;">
+          <label class="field__label" for="validar-email">Correo Electrónico del Tutor *</label>
+          <input type="email" id="validar-email" class="input" placeholder="tutor@ejemplo.com" required>
+        </div>
+
+        <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:8px; padding:12px; margin-bottom:14px;">
+          <div style="font-weight:700; color:#166534; font-size:13px; display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span>Signos Vitales y Antecedentes (Registro de Recepción)</span>
+          </div>
+          <p style="font-size:11px; color:#15803D; margin:0 0 10px 0;">
+            Regla de Negocio: El paciente ya debe ingresar con sus datos clínicos a la consulta del doctor.
+          </p>
+          <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:8px; margin-bottom:10px;">
+            <div class="field">
+              <label class="field__label" for="validar-peso">Peso (kg) *</label>
+              <input type="number" step="0.01" id="validar-peso" class="input num" placeholder="Ej. 12.5" required />
+            </div>
+            <div class="field">
+              <label class="field__label" for="validar-talla">Talla (cm) *</label>
+              <input type="number" step="0.1" id="validar-talla" class="input num" placeholder="Ej. 85.0" required />
+            </div>
+            <div class="field">
+              <label class="field__label" for="validar-pc">P. Cefálico (cm)</label>
+              <input type="number" step="0.1" id="validar-pc" class="input num" placeholder="Ej. 46.5" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="validar-temp">Temp (°C) *</label>
+              <input type="number" step="0.1" id="validar-temp" class="input num" placeholder="Ej. 36.8" required />
+            </div>
+          </div>
+          <div class="field">
+            <label class="field__label">Antecedentes Perinatales e Historial Familiar (Tags)</label>
+            <div class="tag-input-wrapper" id="validar-ant-tags-wrapper" style="border:1px solid #CBD5E1; border-radius:6px; padding:6px 8px; background:#FFFFFF; min-height:40px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;">
+              <div class="tags-container" id="validar-ant-tags-container" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+              <input type="text" id="validar-ant-input" class="tag-input-text" placeholder="Escribe y presiona Enter (ej. Parto prematuro, Asma familiar)..." style="border:none; outline:none; flex:1; min-width:160px; font-size:13px; padding:4px;" />
+            </div>
+            <input type="hidden" id="validar-antecedentes" name="antecedentes" value="" />
+            <span style="font-size:11px; color:#64748B;">Presiona Enter para agregar etiquetas de antecedentes.</span>
+          </div>
+        </div>
+
+        <div class="field" style="margin-bottom:16px;">
+          <label class="field__label">Alergias / Problemas Crónicos (Sistema de Etiquetas)</label>
+          <div class="tag-input-wrapper" id="validar-tags-wrapper" style="border:1px solid #CBD5E1; border-radius:6px; padding:6px 8px; background:#FFFFFF; min-height:42px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;">
+            <div class="tags-container" id="validar-tags-container" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+            <input type="text" id="validar-cronicos-input" class="tag-input-text" placeholder="Escribe y presiona Enter (ej. Asma)..." style="border:none; outline:none; flex:1; min-width:160px; font-size:13px; padding:4px;" />
+          </div>
+          <input type="hidden" id="validar-cronicos" name="cronicos" value="" />
+          <span style="font-size:11px; color:#64748B;">Presiona Enter para agregar etiquetas de alergias o antecedentes.</span>
+        </div>
+
+        <div class="field" style="margin-bottom:16px;">
+          <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px;">
+            <div style="font-weight:700; color:#0F172A; font-size:13px; display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+              <span>💉</span><span>Registro de Vacunas PAI (Según Cartilla Física)</span>
+            </div>
+            <p style="font-size:11px; color:#64748B; margin:0 0 10px 0;">
+              Marca las vacunas que el niño(a) ya tiene aplicadas en su cartilla física de salud:
+            </p>
+            <div id="validar-vax-list" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap:8px; font-size:12px;">
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="BCG"> BCG</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="Hepatitis B"> Hepatitis B</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="Pentavalente"> Pentavalente</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="Polio"> Polio</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="Rotavirus"> Rotavirus</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="Neumococo"> Neumococo</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="MMR"> MMR</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="DPT"> DPT</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="dT"> dT</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="VPH"> VPH</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="Influenza"> Influenza</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="Fiebre Amarilla"> Fiebre Amarilla</label>
+              <label style="display:flex; align-items:center; gap:6px; cursor:pointer;"><input type="checkbox" name="vax-validar" value="COVID-19"> COVID-19</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-dialog__foot" style="padding: 0; margin-top: 16px;">
+          <button type="button" class="btn btn--outline" data-close-modal="modal-validar-tutor">Cancelar</button>
+          <button type="submit" class="btn btn--primary">Validar y Pasar a Sala</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-actualizar-medidas" aria-hidden="true">
+    <div class="modal-dialog rec-modal-dialog rec-modal-dialog--sm" role="dialog" aria-modal="true" aria-labelledby="modal-medidas-title">
+      <div class="modal-dialog__head">
+        <div>
+          <h2 class="modal-dialog__title" id="modal-medidas-title">Actualizar Medidas Antropométricas</h2>
+          <p class="rec-modal-sub" id="modal-medidas-subtitle">Registra el peso y talla del control. Se guardará el historial para la curva OMS del Doctor.</p>
+        </div>
+        <button type="button" class="btn btn--sm btn--outline" data-close-modal="modal-actualizar-medidas">Cerrar</button>
+      </div>
+
+      <form id="rec-form-medidas" class="rec-form-stack" novalidate>
+        <input type="hidden" id="medidas-paciente-id" value="" />
+        <div class="field">
+          <label for="medidas-paciente-nombre" class="field__label">Paciente en Control</label>
+          <input type="text" id="medidas-paciente-nombre" class="input" readonly style="background:#F8FAFC; font-weight:600;" />
+        </div>
+        <div class="rec-modal-grid">
+          <div class="field">
+            <label for="medidas-peso" class="field__label">Peso actual (kg)</label>
+            <input type="number" id="medidas-peso" class="input num" step="0.01" min="1" max="150" placeholder="Ej. 9.40" required />
+          </div>
+          <div class="field">
+            <label for="medidas-talla" class="field__label">Talla / Longitud (cm)</label>
+            <input type="number" id="medidas-talla" class="input num" step="0.1" min="30" max="220" placeholder="Ej. 74.5" required />
+          </div>
+        </div>
+        <div class="rec-modal-grid">
+          <div class="field">
+            <label for="medidas-pc" class="field__label">Perímetro Cefálico (cm)</label>
+            <input type="number" id="medidas-pc" class="input num" step="0.1" min="20" max="80" placeholder="Ej. 43.5" />
+          </div>
+          <div class="field">
+            <label for="medidas-temp" class="field__label">Temperatura (°C)</label>
+            <input type="number" id="medidas-temp" class="input num" step="0.1" min="34" max="43" placeholder="Ej. 36.8" />
+          </div>
+        </div>
+        <div class="modal-dialog__foot" style="margin-top: 16px; display: flex; justify-content: flex-end; gap: 8px;">
+          <button type="button" class="btn btn--outline" data-close-modal="modal-actualizar-medidas">Cancelar</button>
+          <button type="submit" class="btn btn--primary" id="btn-guardar-medidas">Guardar e Historiar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <script src="js/recepcion.js" defer></script>
+</body>
+</html>

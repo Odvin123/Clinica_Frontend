@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Módulo de Atención Clínica Pediátrica · Dr. Elman Urbina, Juigalpa." />
+  <meta name="theme-color" content="#0F172A" />
+  <title>Consultorio Pediátrico | Clínica Dr. Elman Urbina</title>
+  <link rel="stylesheet" href="css/doctor.css" />
+  <script src="js/guardian.js"></script>
+</head>
+<body data-page="doctor">
+
+  <header class="mobile-topbar" aria-label="Navegación móvil médica">
+    <div class="mobile-topbar__brand">
+      <svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect width="40" height="40" rx="10" fill="#0FA97C" />
+        <path d="M13 13v5a7 7 0 0 0 14 0v-5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M20 25v4a4 4 0 0 0 8 0v-2" stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="28" cy="25" r="2.5" fill="#FCD34D"/>
+      </svg>
+      <span>Consultorio · Dr. Elman Urbina</span>
+    </div>
+    <button type="button" class="btn btn--sm" id="mobile-menu-open" aria-label="Abrir menú" aria-expanded="false">
+      Menú
+    </button>
+  </header>
+
+  <div class="app-shell">
+
+    <aside class="sidebar" id="app-sidebar" aria-label="Menú del módulo médico">
+      <div class="sidebar__header">
+        <a href="index.html" class="brand-mark">
+          <svg class="brand-mark__svg" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect width="40" height="40" rx="10" fill="#0FA97C" />
+            <path d="M13 13v5a7 7 0 0 0 14 0v-5" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M20 25v4a4 4 0 0 0 8 0v-2" stroke="#FCD34D" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="28" cy="25" r="2.5" fill="#FCD34D"/>
+            <circle cx="13" cy="12" r="1.8" fill="#FFFFFF"/>
+            <circle cx="27" cy="12" r="1.8" fill="#FFFFFF"/>
+          </svg>
+          <span class="brand-mark__text">
+            <span class="brand-mark__name">Dr. Elman Urbina</span>
+            <span class="brand-mark__sub">Atención Clínica Pediátrica</span>
+          </span>
+        </a>
+        <button type="button" class="btn btn--sm sidebar__close-btn" id="mobile-menu-close">Cerrar</button>
+      </div>
+
+      <nav class="nav-group" aria-label="Sub-módulos clínicos">
+        <div class="nav-group__label">Consulta pediátrica</div>
+
+        <button type="button" class="nav-item" data-nav-view="view-doc-dashboard" aria-current="page">
+          <span class="nav-item__left">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="3" y="3" width="6" height="6" rx="1.5"/>
+              <rect x="11" y="3" width="6" height="6" rx="1.5"/>
+              <rect x="3" y="11" width="6" height="6" rx="1.5"/>
+              <rect x="11" y="11" width="6" height="6" rx="1.5"/>
+            </svg>
+            <span>Dashboard</span>
+          </span>
+          <span class="nav-badge num" id="doc-nav-count-patients">0</span>
+        </button>
+
+        <button type="button" class="nav-item" data-nav-view="view-doc-expediente">
+          <span class="nav-item__left">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="4" y="2.5" width="12" height="15" rx="2"/>
+              <path d="M7.5 7h5M7.5 10.5h5M7.5 14h3" stroke-linecap="round"/>
+            </svg>
+            <span>Expediente y Vacunas</span>
+          </span>
+          <span class="nav-badge">PAI</span>
+        </button>
+
+        <button type="button" class="nav-item" data-nav-view="view-doc-medicacion">
+          <span class="nav-item__left">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M10 3a5 5 0 0 0-5 5v3.5L3.5 13v1h13v-1L15 11.5V8a5 5 0 0 0-5-5Z" stroke-linejoin="round"/>
+              <path d="M8.5 16.5a1.5 1.5 0 0 0 3 0" stroke-linecap="round"/>
+            </svg>
+            <span>Emitir Receta</span>
+          </span>
+          <span class="nav-badge num" id="doc-nav-count-plans">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="user-card">
+          <span class="avatar avatar--pos">EU</span>
+          <div class="user-card__info">
+            <div class="user-card__name">Dr. Elman Urbina</div>
+            <div class="user-card__role">Pediatra · MINSA</div>
+          </div>
+        </div>
+        <div class="sidebar__links" style="justify-content: center;">
+          <a href="login.html">Cerrar sesión</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="canvas">
+      <div class="title-row">
+        <div class="title-row__left">
+          <h1 id="doc-page-title">Dashboard · Dr. Elman Urbina</h1>
+          <p class="title-row__sub" id="doc-page-sub">
+            Indicadores clínicos en tiempo real y fila de espera priorizada por Triage pediátrico.
+          </p>
+        </div>
+      </div>
+
+      <section id="view-doc-dashboard" class="subview" aria-label="Dashboard y Fila de Espera del Doctor">
+
+        <div style="position:relative; margin-bottom: 16px;">
+          <div style="position:relative;">
+            <input type="search" id="doc-patient-search-input" class="input" placeholder="🔍 Buscar a cualquier paciente por nombre o UUID de expediente..." autocomplete="off" style="padding-left:38px; height:42px; font-size:14px; background:white; border-radius:8px;" />
+            <svg style="position:absolute; left:12px; top:13px; width:16px; height:16px; color:#64748B;" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="8.5" cy="8.5" r="5.5"/>
+              <path d="m13 13 4 4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div id="doc-patient-search-results" class="is-hidden" style="position:absolute; top:100%; left:0; right:0; z-index:100; background:white; border:1px solid #CBD5E1; border-radius:8px; box-shadow:0 10px 25px -5px rgba(0,0,0,0.15); max-height:300px; overflow-y:auto; margin-top:4px;"></div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi">
+            <div class="kpi-label">
+              <svg viewBox="0 0 20 20" fill="none" stroke="#0284C7" stroke-width="2" aria-hidden="true">
+                <rect x="3" y="4" width="14" height="13" rx="2.5"/>
+                <path d="M14 2v4M6 2v4M3 8.5h14" stroke-linecap="round"/>
+              </svg>
+              <span>Pacientes</span>
+            </div>
+            <div class="kpi-value num" id="dash-kpi-total">0 <small>citas</small></div>
+            <div class="kpi-delta"><span class="pos" id="dash-kpi-total-sub">Total de citas activas</span></div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-label">
+              <svg viewBox="0 0 20 20" fill="none" stroke="#F23D5C" stroke-width="2" aria-hidden="true">
+                <path d="M10 17s-6-4.3-6-9a3.5 3.5 0 0 1 6-2.4A3.5 3.5 0 0 1 16 8c0 4.7-6 9-6 9Z" stroke-linejoin="round"/>
+              </svg>
+              <span>Urgencias (Rojo)</span>
+            </div>
+            <div class="kpi-value num" style="color:#BE123C;" id="dash-kpi-urgencias">0 <small>urgentes</small></div>
+            <div class="kpi-delta"><span class="neg" id="dash-kpi-urgencias-sub">Triage ROJO prioritario</span></div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-label">
+              <svg viewBox="0 0 20 20" fill="none" stroke="#047857" stroke-width="2" aria-hidden="true">
+                <path d="M10 2.5 4 5v5c0 4 2.6 6.6 6 7.5 3.4-.9 6-3.5 6-7.5V5l-6-2.5Z" stroke-linejoin="round"/>
+                <path d="m7.5 10 1.8 1.8 3.5-3.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Controles / Vacunas</span>
+            </div>
+            <div class="kpi-value num" style="color:#047857;" id="dash-kpi-controles">0 <small>pacientes</small></div>
+            <div class="kpi-delta"><span class="pos" id="dash-kpi-controles-sub">Triage VERDE sano/vacuna</span></div>
+          </div>
+
+          <div class="kpi">
+            <div class="kpi-label">
+              <svg viewBox="0 0 20 20" fill="none" stroke="#6366F1" stroke-width="2" aria-hidden="true">
+                <path d="M16 6 7.75 14.25 4 10.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="10" cy="10" r="8"/>
+              </svg>
+              <span>Atendidos</span>
+            </div>
+            <div class="kpi-value num" style="color:#4338CA;" id="dash-kpi-atendidos">0 <small>completados</small></div>
+            <div class="kpi-delta"><span class="pos">Consultas finalizadas</span></div>
+          </div>
+        </div>
+
+        <article class="panel panel--accent-green" style="margin-top: 10px;">
+          <header class="panel__head">
+            <div class="panel__title-group">
+              <h2 class="panel__title">Fila de Espera Ordenada por Prioridad Triage</h2>
+              <p class="panel__meta">Pacientes validados en recepción listos para consulta. Haz clic en "Atender paciente" para abrir su Expediente Único.</p>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+              <div style="display:flex; align-items:center; gap:6px;">
+                <label for="doc-dash-date-filter" class="field__hint" style="margin:0; font-weight:600; color:var(--text-sec);">Fecha:</label>
+                <input type="date" id="doc-dash-date-filter" class="input num" style="height:32px; font-size:12px; width:auto; padding:0 8px;" />
+              </div>
+              <div class="doc-date-pills" id="doc-dash-quick-pills" role="group" aria-label="Acceso rápido por fecha">
+                <button type="button" class="doc-date-pill is-active" data-doc-date-offset="0" aria-pressed="true">Hoy</button>
+                <button type="button" class="doc-date-pill" data-doc-date-offset="1" aria-pressed="false">Mañana</button>
+                <button type="button" class="doc-date-pill" data-doc-date-offset="2" aria-pressed="false">En 2 días</button>
+              </div>
+              <div class="segmented" role="group" aria-label="Filtrar por nivel de triage">
+                <button type="button" class="segmented__btn" data-doc-filter="all" aria-pressed="true" id="btn-filter-all">Todos (0)</button>
+                <button type="button" class="segmented__btn" data-doc-filter="rojo" aria-pressed="false">Rojo · Urgente</button>
+                <button type="button" class="segmented__btn" data-doc-filter="amarillo" aria-pressed="false">Amarillo · Fiebre</button>
+                <button type="button" class="segmented__btn" data-doc-filter="verde" aria-pressed="false">Verde · Control</button>
+              </div>
+              <span class="pill pill--info num" id="dash-waiting-badge">0 en espera</span>
+            </div>
+          </header>
+
+          <div class="agenda-stream" id="doc-dashboard-waiting-list" aria-live="polite">
+            <div style="padding: 24px; text-align: center; color: var(--muted);">Cargando fila de espera desde PostgreSQL...</div>
+          </div>
+
+          <footer class="panel__foot">
+            <span>Sincronizado en tiempo real con Recepción</span>
+          </footer>
+        </article>
+      </section>
+
+      <section id="view-doc-expediente" class="subview is-hidden" aria-label="Expediente Pediátrico Único">
+
+        <article class="panel panel--accent-blue" style="margin-bottom: 22px;">
+          <div class="panel__head" style="margin-bottom: 16px;">
+            <div class="panel__title-group">
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                <h2 class="panel__title" style="font-size:18px;" id="ehr-patient-name">Selecciona un paciente</h2>
+                <span class="triage-badge triage-badge--verde" id="ehr-patient-triage">
+                  <span class="triage-dot"></span>
+                  <span>Triage Verde</span>
+                </span>
+                <span class="pill pill--info num" id="ehr-patient-code">PACIENTE</span>
+              </div>
+              <p class="panel__meta" id="ehr-patient-summary">
+                Selecciona un paciente desde el Dashboard o el selector superior para cargar sus datos clínicos reales.
+              </p>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <label for="ehr-switcher" class="field__hint">Paciente en consulta:</label>
+              <select id="ehr-switcher" class="select" style="width:auto;min-width:230px;height:36px;"></select>
+              <button type="button" class="btn btn--sm" data-nav-view="view-doc-dashboard">← Volver al Dashboard</button>
+            </div>
+          </div>
+
+          <div class="info-grid info-grid--4" style="margin-bottom: 18px;">
+            <div class="info-well">
+              <span class="info-well__label">
+                <svg viewBox="0 0 20 20" fill="none" stroke="#0284C7" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="4" width="14" height="13" rx="2.5"/>
+                  <path d="M7 8.5a3 3 0 0 1 6 0L10 10.5" stroke-linecap="round"/>
+                </svg>
+                <span>Báscula · Peso actual</span>
+              </span>
+              <span class="info-well__val num" id="ehr-val-weight">-- kg</span>
+            </div>
+
+            <div class="info-well info-well--green">
+              <span class="info-well__label">
+                <svg viewBox="0 0 20 20" fill="none" stroke="#0FA97C" stroke-width="2" aria-hidden="true">
+                  <path d="M6 3v14M6 6h4M6 10h3M6 14h4M13 4v12" stroke-linecap="round"/>
+                </svg>
+                <span>Tallímetro · Longitud</span>
+              </span>
+              <span class="info-well__val num" id="ehr-val-height">-- cm</span>
+            </div>
+
+            <div class="info-well info-well--coral">
+              <span class="info-well__label">
+                <svg viewBox="0 0 20 20" fill="none" stroke="#F23D5C" stroke-width="2" aria-hidden="true">
+                  <path d="M8.5 3.5a1.5 1.5 0 0 1 3 0v7.2a3.5 3.5 0 1 1-3 0V3.5Z"/>
+                  <circle cx="10" cy="13.5" r="1.3" fill="#F23D5C"/>
+                </svg>
+                <span>Termómetro clínico</span>
+              </span>
+              <span class="info-well__val num" id="ehr-val-temp">-- °C</span>
+            </div>
+
+            <div class="info-well info-well--amber">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span class="info-well__label">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="#F49D0C" stroke-width="2" aria-hidden="true">
+                    <path d="m14 3 3 3-8.5 8.5-3.5.5.5-3.5L14 3ZM4 16l2.5-2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Avance Vacunas PAI</span>
+                </span>
+                <span class="pill pill--pos num" id="ehr-vax-pct-pill">0%</span>
+              </div>
+              <span class="info-well__val num" id="ehr-vax-count-label">0 de 13 aplicadas</span>
+              <div class="z-track"><div class="z-track__fill" id="ehr-vax-progress-bar" style="width:0%;"></div></div>
+            </div>
+          </div>
+
+          <div class="chronic-banner" id="ehr-chronic-banner">
+            <div>
+              <div class="chronic-banner__title">
+                Padecimientos crónicos, alertas respiratorias y alergias
+              </div>
+              <p class="chronic-banner__desc" id="ehr-chronic-desc">
+                Sin alergias ni padecimientos crónicos registrados.
+              </p>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <button type="button" class="btn btn--sm" data-open-modal="modal-edit-chronic">
+                Editar antecedentes
+              </button>
+              <button type="button" class="btn btn--sm btn--green" data-nav-view="view-doc-medicacion">
+                Prescribir Receta →
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="tabs-bar" role="tablist" aria-label="Secciones del Expediente Pediátrico Único">
+            <button type="button" class="tab-btn" role="tab" data-doc-tab="doc-tab-vacunas" aria-selected="true">
+              1. Control Real de Vacunas (PAI)
+            </button>
+            <button type="button" class="tab-btn" role="tab" data-doc-tab="doc-tab-datos" aria-selected="false">
+              2. Signos Vitales e Historial Familiar
+            </button>
+            <button type="button" class="tab-btn" role="tab" data-doc-tab="doc-tab-consultas" aria-selected="false">
+              3. Consultas Anteriores
+            </button>
+            <button type="button" class="tab-btn" role="tab" data-doc-tab="doc-tab-oms" aria-selected="false">
+              4. Curvas de Crecimiento OMS
+            </button>
+          </div>
+
+          <div id="doc-tab-vacunas" class="doc-tab-pane">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap;">
+              <div>
+                <h3 class="panel__title">Esquema Oficial de Vacunación PAI · Control de Aplicación y Firma Médica</h3>
+                <p class="panel__meta">Datos leídos en tiempo real de PostgreSQL. Al aplicar una vacuna queda sellada con fecha y firma del médico.</p>
+              </div>
+              <span class="pill pill--pos num" id="doc-vax-table-summary">Sincronizado con BD</span>
+            </div>
+
+            <div class="table-wrap">
+              <table aria-label="Control de vacunación PAI">
+                <thead>
+                  <tr>
+                    <th>Vacuna / Biológico PAI</th>
+                    <th>Dosis del esquema</th>
+                    <th>Estado y Fecha / Firma Médica</th>
+                    <th class="n">Acción Clínica</th>
+                  </tr>
+                </thead>
+                <tbody id="doc-vax-tbody">
+                  <tr><td colspan="4" style="text-align:center; padding:16px; color:#64748B;">Selecciona un paciente para ver sus vacunas.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="doc-tab-datos" class="doc-tab-pane is-hidden">
+            <h3 class="panel__title" style="margin-bottom: 14px;">Signos vitales y antropometría del paciente (Conectado a PostgreSQL)</h3>
+            <form id="form-doc-vitals" class="form-grid" novalidate>
+              <div class="field col-3">
+                <label for="input-doc-weight" class="field__label">Peso en báscula (kg)</label>
+                <input type="number" id="input-doc-weight" class="input num" step="0.1" placeholder="Ej. 11.5" required />
+              </div>
+              <div class="field col-3">
+                <label for="input-doc-height" class="field__label">Talla / Longitud (cm)</label>
+                <input type="number" id="input-doc-height" class="input num" step="0.1" placeholder="Ej. 82.0" required />
+              </div>
+              <div class="field col-3">
+                <label for="input-doc-head" class="field__label">Perímetro cefálico (cm)</label>
+                <input type="number" id="input-doc-head" class="input num" step="0.1" placeholder="Ej. 46.0" />
+              </div>
+              <div class="field col-3">
+                <label for="input-doc-temp" class="field__label">Temperatura (°C)</label>
+                <input type="number" id="input-doc-temp" class="input num" step="0.1" placeholder="Ej. 36.8" />
+              </div>
+              <div class="field col-12">
+                <label for="input-doc-tag-entry" class="field__label">Antecedentes Perinatales e Historial Familiar</label>
+                <div class="tags-input-container" id="doc-family-tags-container">
+                  <div class="tags-list" id="doc-family-tags-list" aria-live="polite"></div>
+                  <div class="tags-input-wrap">
+                    <input type="text" id="input-doc-tag-entry" class="input tags-input-field" placeholder="Escribe un antecedente (ej. Asma, Prematuro, Diabetes) y presiona Enter..." autocomplete="off" />
+                    <button type="button" class="btn btn--sm btn--primary" id="btn-add-doc-tag">Agregar</button>
+                  </div>
+                </div>
+                <input type="hidden" id="input-doc-family-history" name="antecedentes" />
+                <span class="field__hint">Escribe una etiqueta y presiona <strong>Enter</strong> o el botón <strong>Agregar</strong> para registrarla. Se pueden eliminar pulsando la '×'.</span>
+              </div>
+              <div class="col-12" style="display:flex;justify-content:flex-end;gap:10px;">
+                <button type="submit" class="btn btn--primary">Guardar signos vitales en Base de Datos</button>
+              </div>
+            </form>
+          </div>
+
+          <div id="doc-tab-consultas" class="doc-tab-pane is-hidden">
+            <div class="table-wrap">
+              <table aria-label="Historial de consultas anteriores">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Diagnóstico / Tipo</th>
+                    <th>Medicamento / Motivo e Indicaciones</th>
+                    <th class="n">Posología / Estado</th>
+                    <th>Médico</th>
+                  </tr>
+                </thead>
+                <tbody id="ehr-consultas-tbody">
+                  <tr><td colspan="5" style="text-align:center; padding:16px; color:#64748B;">Selecciona un paciente para consultar su historial.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="doc-tab-oms" class="doc-tab-pane is-hidden">
+            <div class="info-grid" style="margin-bottom: 20px;">
+              <div class="info-well">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span class="info-well__label">Peso para la Edad (OMS)</span>
+                  <span class="pill pill--pos num" id="oms-badge-weight">P50 · 0.00 SD</span>
+                </div>
+                <span class="info-well__val num" id="oms-val-weight">-- kg</span>
+                <div class="z-track"><div class="z-track__fill" id="oms-bar-weight" style="width:50%;"></div></div>
+              </div>
+
+              <div class="info-well info-well--green">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span class="info-well__label">Talla para la Edad (OMS)</span>
+                  <span class="pill pill--pos num" id="oms-badge-height">P50 · 0.00 SD</span>
+                </div>
+                <span class="info-well__val num" id="oms-val-height">-- cm</span>
+                <div class="z-track"><div class="z-track__fill" id="oms-bar-height" style="width:50%;"></div></div>
+              </div>
+
+              <div class="info-well info-well--amber">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span class="info-well__label">Perímetro Cefálico (OMS)</span>
+                  <span class="pill pill--pos num" id="oms-badge-head">P50 · 0.00 SD</span>
+                </div>
+                <span class="info-well__val num" id="oms-val-head">-- cm</span>
+                <div class="z-track"><div class="z-track__fill z-track__fill--blue" id="oms-bar-head" style="width:50%;"></div></div>
+              </div>
+            </div>
+
+            <h3 class="panel__title" style="margin-bottom: 10px;">Curva de crecimiento ponderal OMS (Datos reales del paciente)</h3>
+            <div class="chart-box" id="doc-who-chart"></div>
+
+            <div style="margin-top: 24px;">
+              <h4 class="panel__title" style="font-size: 14px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                <span>Evolución Histórica de Controles (Registro Pediátrico)</span>
+                <span style="font-size: 12px; font-weight: normal; color: #64748B;">Alimentado en cada control en recepción o consulta</span>
+              </h4>
+              <div class="table-wrap">
+                <table class="table" style="font-size: 13px;">
+                  <thead>
+                    <tr>
+                      <th>Fecha Control</th>
+                      <th>Edad al Control</th>
+                      <th>Peso (kg)</th>
+                      <th>Talla (cm)</th>
+                      <th>P. Cefálico</th>
+                      <th>Temp (°C)</th>
+                      <th>Z-Score / Percentil OMS</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ehr-medidas-tbody">
+                    <tr><td colspan="7" style="text-align:center; padding:16px; color:#64748B;">Sin controles registrados aún.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="view-doc-medicacion" class="subview is-hidden" aria-label="Emisión de Receta y Envío a Recepción">
+        <div class="grid-12">
+          <article class="panel panel--accent-green col-7">
+            <header class="panel__head">
+              <div class="panel__title-group">
+                <h2 class="panel__title">Emitir Receta Médica</h2>
+                <p class="panel__meta"></p>
+              </div>
+            </header>
+
+            <form id="form-doc-medication" class="form-grid" novalidate>
+
+              <div class="field col-6">
+                <label for="med-plan-patient" class="field__label">Paciente Atendido *</label>
+                <select id="med-plan-patient" class="select" required></select>
+              </div>
+              <div class="field col-6">
+                <label for="med-plan-cie10" class="field__label">Diagnóstico (CIE-10 o libre) *</label>
+                <input type="text" id="med-plan-cie10" list="cie10-datalist" class="input" placeholder="Ej. J02.9 · Faringoamigdalitis aguda" required />
+                <datalist id="cie10-datalist">
+                  <option value="J02.9 · Faringoamigdalitis aguda"></option>
+                  <option value="J20.9 · Bronquitis aguda pediátrica"></option>
+                  <option value="A09.0 · Gastroenteritis e hidratación oral"></option>
+                  <option value="L20.9 · Dermatitis atópica"></option>
+                  <option value="Z00.1 · Control de niño sano"></option>
+                  <option value="J00 · Rinofaringitis aguda"></option>
+                </datalist>
+              </div>
+
+              <div class="field col-8">
+                <label for="med-plan-drug" class="field__label">Medicamento y concentración *</label>
+                <input type="text" id="med-plan-drug" class="input" placeholder="Ej. Amoxicilina suspensión 250 mg / 5 ml" required />
+              </div>
+              <div class="field col-4">
+                <label for="med-plan-dose" class="field__label">Dosis exacta por toma *</label>
+                <input type="text" id="med-plan-dose" class="input num" placeholder="Ej. 5 ml vía oral" required />
+              </div>
+
+              <div class="field col-4">
+                <label for="med-plan-freq" class="field__label">Frecuencia *</label>
+                <div style="display:flex; gap:6px;">
+                  <input type="number" id="med-plan-freq" class="input num" value="8" min="1" max="1440" placeholder="Ej. 8" required style="width:72px; flex-shrink:0;" />
+                  <select id="med-plan-interval-unit" class="select" style="flex:1;">
+                    <option value="horas" selected>horas</option>
+                    <option value="minutos">minutos</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field col-4">
+                <label for="med-plan-days" class="field__label">Duración (días) *</label>
+                <input type="number" id="med-plan-days" class="input num" value="5" min="1" max="60" placeholder="Ej. 5" required />
+              </div>
+              <div class="field col-4">
+                <label for="med-plan-time" class="field__label">Hora 1ª toma (H:M) *</label>
+                <input type="time" id="med-plan-time" class="input num" value="08:00" required />
+              </div>
+
+              <div class="col-12" style="margin-top:-6px; margin-bottom:2px;">
+                <div style="padding:8px 12px; background:#ECFDF5; border:1px solid #A7F3D0; border-radius:6px; font-size:12.5px; color:#065F46; font-weight:700; display:flex; align-items:center; gap:8px;" id="doc-med-next-send-preview">
+                  🔔 Próximo envío: Calculando...
+                </div>
+              </div>
+
+              <div class="field col-12">
+                <label for="med-plan-notes" class="field__label">Indicaciones médicas y signos de alarma *</label>
+                <textarea id="med-plan-notes" class="textarea" rows="3" placeholder="Administrar con alimentos. Ofrecer abundantes líquidos y acudir si persiste fiebre..."></textarea>
+              </div>
+
+              <div class="col-12" style="display:flex; justify-content:flex-end; align-items:center; gap:12px; margin-top:16px; flex-wrap:wrap;">
+                <button type="button" class="btn btn--secondary" id="btn-doc-form-test-push" style="border:1px solid #0F766E; color:#0F766E; font-weight:700; height:42px;">
+                  🔔 Probar Push Ahora
+                </button>
+                <button type="submit" class="btn btn--green" style="font-weight:700; height:42px;">
+                  Finalizar Consulta y Enviar Receta →
+                </button>
+              </div>
+            </form>
+          </article>
+
+          <article class="panel panel--accent-blue col-5">
+            <header class="panel__head">
+              <div class="panel__title-group">
+                <h2 class="panel__title">Recetas Enviadas por el Doctor</h2>
+                <p class="panel__meta">Historial de recetas emitidas con filtro por fecha y programación Push</p>
+              </div>
+              <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                <input type="date" id="doc-rx-date-filter" class="input num" style="height:32px; width:auto; padding:0 8px; font-size:12px;" aria-label="Filtrar recetas por fecha" />
+                <button type="button" class="btn btn--sm" id="btn-doc-rx-all">Todas</button>
+              </div>
+            </header>
+
+            <div class="triage-list" id="doc-active-plans-list" style="gap: 12px;">
+
+            </div>
+
+            <footer class="panel__foot">
+              <span>Puedes programar horarios o probar notificaciones Push directamente desde cada receta</span>
+            </footer>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal-doc-schedule-rx" role="dialog" aria-modal="true" aria-labelledby="modal-doc-rx-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <header class="modal-dialog__head">
+        <div>
+          <h2 class="modal-dialog__title" id="modal-doc-rx-title">Programar Horarios y Alertas Push</h2>
+          <p class="panel__meta" style="margin:2px 0 0 0;">Configura el intervalo en horas o minutos para las notificaciones del tutor.</p>
+        </div>
+        <button type="button" class="btn btn--sm btn--ghost" data-close-modal="modal-doc-schedule-rx">Cerrar</button>
+      </header>
+      <form id="form-doc-schedule-rx" class="form-grid" novalidate>
+        <input type="hidden" id="doc-sched-rx-id" value="" />
+        <input type="hidden" id="doc-sched-tutor-id" value="" />
+
+        <div class="field col-12">
+          <label for="doc-sched-pat-name" class="field__label">Paciente y Medicamento</label>
+          <input type="text" id="doc-sched-pat-name" class="input" readonly style="background:#F8FAFC; font-weight:600;" />
+        </div>
+
+        <div class="field col-6">
+          <label for="doc-sched-start-hour" class="field__label">Hora de Primera Toma (H:M) *</label>
+          <input type="time" id="doc-sched-start-hour" class="input num" value="08:00" required />
+        </div>
+        <div class="field col-6">
+          <label for="doc-sched-days" class="field__label">Duración (días) *</label>
+          <input type="number" id="doc-sched-days" class="input num" value="5" min="1" max="60" required />
+        </div>
+
+        <div class="field col-6">
+          <label for="doc-sched-interval-unit" class="field__label">Unidad de Intervalo *</label>
+          <select id="doc-sched-interval-unit" class="select">
+            <option value="horas" selected>Cada X horas</option>
+            <option value="minutos">Cada X minutos</option>
+          </select>
+        </div>
+        <div class="field col-6">
+          <label for="doc-sched-interval-val" class="field__label">Intervalo (X) *</label>
+          <input type="number" id="doc-sched-interval-val" class="input num" value="8" min="1" max="1440" required />
+        </div>
+
+        <div class="col-12">
+          <div style="padding:12px 14px; background:#ECFDF5; border:1px solid #A7F3D0; border-radius:8px; color:#065F46; font-size:13px; font-weight:700;" id="doc-sched-next-send-preview">
+            Próximo envío: Calculando...
+          </div>
+        </div>
+
+        <footer class="modal-dialog__foot col-12" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <button type="button" class="btn btn--sm" id="btn-doc-modal-test-push" style="border:1px solid #0F766E; color:#0F766E; font-weight:700;">
+            🔔 Probar Push Ahora
+          </button>
+          <div style="display:flex; gap:8px;">
+            <button type="button" class="btn" data-close-modal="modal-doc-schedule-rx">Cancelar</button>
+            <button type="submit" class="btn btn--primary">Guardar y Activar Horario</button>
+          </div>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-edit-chronic" role="dialog" aria-modal="true" aria-labelledby="modal-chronic-title" aria-hidden="true">
+    <div class="modal-dialog">
+      <header class="modal-dialog__head">
+        <h2 class="modal-dialog__title" id="modal-chronic-title">Actualizar padecimientos crónicos y alergias</h2>
+        <button type="button" class="btn btn--sm btn--ghost" data-close-modal="modal-edit-chronic">Cerrar</button>
+      </header>
+      <form id="form-modal-chronic" class="form-grid" novalidate>
+        <div class="field col-12">
+          <label for="input-chronic-text" class="field__label">Antecedentes crónicos y alergias del paciente</label>
+          <textarea id="input-chronic-text" class="textarea" placeholder="Escribe alergias o padecimientos crónicos del paciente..." required></textarea>
+        </div>
+        <footer class="modal-dialog__foot col-12">
+          <button type="button" class="btn" data-close-modal="modal-edit-chronic">Cancelar</button>
+          <button type="submit" class="btn btn--primary">Guardar en expediente</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  <script src="js/doctor.js" defer></script>
+</body>
+</html>
