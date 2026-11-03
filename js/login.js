@@ -1,8 +1,8 @@
 (() => {
   'use strict';
 
-  const API_URL = 'http://localhost:4000/api';
-
+  const API_URL = window.API_URL || 'http://localhost:4000/api';
+  
   document.addEventListener('DOMContentLoaded', () => {
     const formLogin = document.getElementById('login-form');
     const pwdInput = document.getElementById('login-password');

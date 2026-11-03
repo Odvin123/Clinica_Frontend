@@ -1,9 +1,7 @@
 (function () {
   'use strict';
 
-  const API_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-    ? 'http://localhost:4000/api'
-    : '/api';
+  const API_URL = window.API_URL || 'http://localhost:4000/api';
 
   document.addEventListener('DOMContentLoaded', () => {
     initCurrentYear();
