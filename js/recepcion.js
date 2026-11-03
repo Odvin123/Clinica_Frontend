@@ -1,8 +1,7 @@
 (() => {
   'use strict';
 
-  const API_URL = window.API_URL || 'http://localhost:4000/api';
-  
+const API_URL = 'https://clinica-backend-dx7x.onrender.com/api';  
   function getHeaders() {
     return {
       'Content-Type': 'application/json',
