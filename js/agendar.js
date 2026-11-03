@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-const API_URL = 'https://clinica-backend-dx7x.onrender.com/api';
+  const API_URL = 'https://clinica-backend-dx7x.onrender.com/api';
+
   document.addEventListener('DOMContentLoaded', () => {
     initCurrentYear();
     initBookingForm();
@@ -254,7 +255,6 @@ const API_URL = 'https://clinica-backend-dx7x.onrender.com/api';
           </div>
         `;
       } else {
-
         dynamicTimeContainer.innerHTML = `
           <div class="time-slot-group">
             <span class="time-slot-group__label">Turno Matutino (08:00 – 12:00)</span>
@@ -545,7 +545,6 @@ const API_URL = 'https://clinica-backend-dx7x.onrender.com/api';
       }
 
       if (ticketTime) {
-
         const selectedChip = document.querySelector('.time-slot-chip.is-selected');
         if (selectedChip) {
           ticketTime.textContent = selectedChip.getAttribute('data-time-slot') || selectedChip.textContent.trim();
